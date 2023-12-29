@@ -1,9 +1,14 @@
-﻿namespace RestaurantReservation.Db.DataModels
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RestaurantReservation.Db.DataModels
 {
     public class Reservation
     {
         public int Id { get; set; }
-        public DateTime Date { get; set; }
+
+        [DataType(DataType.Date)]
+        public required DateTime Date { get; set; }
+
         public int PartySize { get; set; }
 
         public int RestaurantId { get; set; }

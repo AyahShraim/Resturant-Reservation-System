@@ -1,9 +1,16 @@
-﻿namespace RestaurantReservation.Db.DataModels
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace RestaurantReservation.Db.DataModels
 {
     public class Order
     {
         public int Id { get; set; }
-        public DateTime Date { get; set; }
+
+        [DataType(DataType.Date)]
+        public required DateTime Date { get; set; }
+
+        [Column(TypeName = "decimal(18, 2)")]
         public decimal TotalAmount { get; set; }
 
         public int EmployeeId { get; set; }
