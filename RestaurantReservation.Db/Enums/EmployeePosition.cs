@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RestaurantReservation.Db.Enums
+﻿namespace RestaurantReservation.Db.Enums
 {
-    internal class EmployeePosition
+    public enum EmployeePosition
     {
+        Manager = 1,
+        Chef = 2 ,
+        Waiter = 3,
+        Cashier = 4,
     }
 }
