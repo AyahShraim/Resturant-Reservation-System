@@ -10,7 +10,7 @@ namespace RestaurantReservationApp.Utilities
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
                 .Build();
-            return config.GetConnectionString("RestaurantReservationDb");
+            return config.GetConnectionString("RestaurantReservationDb") ?? throw new Exception();
         }
     }
 }
