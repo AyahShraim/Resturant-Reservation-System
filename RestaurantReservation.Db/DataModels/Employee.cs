@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using RestaurantReservation.Db.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace RestaurantReservation.Db.DataModels
 {
@@ -12,11 +13,11 @@ namespace RestaurantReservation.Db.DataModels
         [MaxLength(100)]
         public required string LastName { get; set; }
 
-        [MaxLength(50)]
-        public required string Position { get; set; }
+        [MaxLength(10)]
+        public required EmployeePosition Position { get; set; }
 
         public int RestaurantId { get; set; }
-        public Restaurant Restaurant { get; set; }
+        public Restaurant Restaurant { get; set; } = null!;
 
         public List<Order> Orders { get; set; } = new();
     }

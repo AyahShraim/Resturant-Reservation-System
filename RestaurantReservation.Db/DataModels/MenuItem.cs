@@ -17,7 +17,7 @@ namespace RestaurantReservation.Db.DataModels
         public decimal Price { get; set; }
 
         public int RestaurantId { get; set; }
-        public Restaurant Restaurant { get; set; }
+        public Restaurant Restaurant { get; set; } = null!;
 
         public List<OrderItem> OrderItems { get; set; } = new();
     }

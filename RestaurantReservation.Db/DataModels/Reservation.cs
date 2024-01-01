@@ -12,13 +12,13 @@ namespace RestaurantReservation.Db.DataModels
         public int PartySize { get; set; }
 
         public int RestaurantId { get; set; }
-        public Restaurant Restaurant { get; set; }
+        public Restaurant Restaurant { get; set; } = null!;
 
         public int CustomerId { get; set; }
-        public Customer Customer { get; set; }
+        public Customer Customer { get; set; } = null!;
 
         public int TableId { get; set; }
-        public Table Table { get; set; }
+        public Table Table { get; set; } = null!;
 
         public List<Order> Orders { get; set; } = new();
     }

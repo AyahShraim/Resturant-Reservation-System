@@ -14,10 +14,10 @@ namespace RestaurantReservation.Db.DataModels
         public decimal TotalAmount { get; set; }
 
         public int EmployeeId { get; set; }
-        public Employee Employee { get; set; }
+        public Employee Employee { get; set; } = null!;
 
         public int ReservationId { get; set; }
-        public Reservation Reservation { get; set; }
+        public Reservation Reservation { get; set; } = null!;
 
         public List<OrderItem> OrderItems { get; set; } = new();
     }
