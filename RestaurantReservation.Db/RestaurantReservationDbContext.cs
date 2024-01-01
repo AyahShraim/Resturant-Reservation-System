@@ -4,6 +4,7 @@ using RestaurantReservation.Db.Enums;
 using Microsoft.Extensions.Logging;
 using RestaurantReservation.Db.SampleData;
 using RestaurantReservation.Db.ViewsModels;
+using RestaurantReservation.Db.StoredProcedureModels;
 
 namespace RestaurantReservation.Db
 {
@@ -19,6 +20,7 @@ namespace RestaurantReservation.Db
         public DbSet<Order> Orders { get; set; }
         public DbSet<ReservationDetails> ReservationsDetails { get; set; }
         public DbSet<EmployeesWithRestaurantDetails> EmployeesWithRestaurantDetails { get; set; }
+        public DbSet<CustomerWithLargePartySizeReservation> CustomersWithLargePartySizeReservation { get; set; }
 
         public RestaurantReservationDbContext() { }
 
@@ -71,6 +73,8 @@ namespace RestaurantReservation.Db
             modelBuilder.HasDbFunction(typeof(RestaurantReservationDbContext)
                .GetMethod(nameof(CalculateRestaurantTotalRevenue)))
                .HasName("fn_CalculateRestaurantTotalRevenue");
+
+            modelBuilder.Entity<CustomerWithLargePartySizeReservation>().HasNoKey();
 
             modelBuilder.Seed();
         }
