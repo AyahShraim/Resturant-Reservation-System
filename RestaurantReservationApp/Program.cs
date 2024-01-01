@@ -6,127 +6,150 @@ using RestaurantReservationApp.Tests.RepositoryInvokers_SampleData;
 
 using var dbContext = new RestaurantReservationDbContext();
 
-#region Customer repository tests
+//#region Customer repository tests
 
-    var customerRepository = new CustomerRepository(dbContext);
+//    var customerRepository = new CustomerRepository(dbContext);
 
-    var customerRepositoryTest = new CustomerRepositoryTest(customerRepository);
+//    var customerRepositoryTest = new CustomerRepositoryTest(customerRepository);
 
-    await customerRepositoryTest.TestGetAllAsync();
+//    await customerRepositoryTest.TestGetAllAsync();
 
-    await customerRepositoryTest.TestGetByIdAsync();
+//    await customerRepositoryTest.TestGetByIdAsync();
 
-    await customerRepositoryTest.TestAddAsync();
+//    await customerRepositoryTest.TestAddAsync();
 
-    await customerRepositoryTest.TestUpdateAsync();
+//    await customerRepositoryTest.TestUpdateAsync();
 
-    await customerRepositoryTest.TestDeleteAsync();
+//    await customerRepositoryTest.TestDeleteAsync();
 
-#endregion
+//#endregion
 
-Console.ReadKey();
-Console.Clear();
+//Console.ReadKey();
+//Console.Clear();
 
-#region Menu Item repository tests
+//#region Menu Item repository tests
 
-    var menuItemRepository = new MenuItemRepository(dbContext);
+//    var menuItemRepository = new MenuItemRepository(dbContext);
 
-    var menuItemRepositoryTest = new MenuItemRepositoryTest(menuItemRepository);
+//    var menuItemRepositoryTest = new MenuItemRepositoryTest(menuItemRepository);
 
-    await menuItemRepositoryTest.TestGetAllAsync();
+//    await menuItemRepositoryTest.TestGetAllAsync();
 
-    await menuItemRepositoryTest.TestGetByIdAsync();
+//    await menuItemRepositoryTest.TestGetByIdAsync();
 
-    await menuItemRepositoryTest.TestAddAsync();
+//    await menuItemRepositoryTest.TestAddAsync();
 
-    await menuItemRepositoryTest.TestUpdateAsync();
+//    await menuItemRepositoryTest.TestUpdateAsync();
 
-    await menuItemRepositoryTest.TestDeleteAsync();
+//    await menuItemRepositoryTest.TestDeleteAsync();
 
-#endregion
+//#endregion
 
-Console.ReadKey();
-Console.Clear();
+//Console.ReadKey();
+//Console.Clear();
 
-#region OrderItem repository tests
+//#region OrderItem repository tests
 
-    var orderItemRepository = new OrderItemRepository(dbContext);
+//    var orderItemRepository = new OrderItemRepository(dbContext);
 
-    var orderItemRepositoryTest = new OrderItemRepositoryTest(orderItemRepository);
+//    var orderItemRepositoryTest = new OrderItemRepositoryTest(orderItemRepository);
 
-    await orderItemRepositoryTest.TestGetAllAsync();
+//    await orderItemRepositoryTest.TestGetAllAsync();
 
-    await orderItemRepositoryTest.TestGetByIdAsync();
+//    await orderItemRepositoryTest.TestGetByIdAsync();
 
-    await orderItemRepositoryTest.TestAddAsync();
+//    await orderItemRepositoryTest.TestAddAsync();
 
-    await orderItemRepositoryTest.TestUpdateAsync();
+//    await orderItemRepositoryTest.TestUpdateAsync();
 
-    await orderItemRepositoryTest.TestDeleteAsync();
+//    await orderItemRepositoryTest.TestDeleteAsync();
 
-#endregion
+//#endregion
 
-Console.ReadKey();
-Console.Clear();
+//Console.ReadKey();
+//Console.Clear();
 
 //#region Table repository tests
 
-//    var tableRepository = new TableRepository(dbContext);
+//var tableRepository = new TableRepository(dbContext);
 
-//    var tableRepositoryTest = new TableRepositoryTest(tableRepository);
+//var tableRepositoryTest = new TableRepositoryTest(tableRepository);
 
-//    await tableRepositoryTest.TestGetAllAsync();
+//await tableRepositoryTest.TestGetAllAsync();
 
-//    await tableRepositoryTest.TestGetByIdAsync();
+//await tableRepositoryTest.TestGetByIdAsync();
 
-//    await tableRepositoryTest.TestAddAsync();
+//await tableRepositoryTest.TestAddAsync();
 
-//    await tableRepositoryTest.TestUpdateAsync();
+//await tableRepositoryTest.TestUpdateAsync();
 
-//    await tableRepositoryTest.TestDeleteAsync();
+//await tableRepositoryTest.TestDeleteAsync();
+
+//#endregion
+
+//Console.ReadKey();
+//Console.Clear();
+
+//#region Employee repository tests
+
+//    IRepositoryServices<Employee, string> employeeRepository = new EmployeeRepository(dbContext);
+    
+//    IEmployeeServices employeeServices = new EmployeeRepository(dbContext);
+
+//    var employeeRepositoryTest = new EmployeeRepositoryTest(employeeRepository, employeeServices);
+
+//    await employeeRepositoryTest.TestGetAllAsync();
+
+//    await employeeRepositoryTest.TestGetByIdAsync();
+
+//    await employeeRepositoryTest.TestAddAsync();
+
+//    await employeeRepositoryTest.TestUpdateAsync();
+
+//    await employeeRepositoryTest.TestDeleteAsync();
+
+//#endregion
+
+//Console.ReadKey();
+//Console.Clear();
+
+//#region Restaurant repository tests
+
+//    var restaurantRepository = new RestaurantRepository(dbContext);
+
+//    var restaurantRepositoryTest = new RestaurantRepositoryTest(restaurantRepository);
+
+//    await restaurantRepositoryTest.TestGetAllAsync();
+
+//    await restaurantRepositoryTest.TestGetByIdAsync();
+
+//    await restaurantRepositoryTest.TestAddAsync();
+
+//    await restaurantRepositoryTest.TestUpdateAsync();
+
+//    await restaurantRepositoryTest.TestDeleteAsync();
 
 //#endregion
 
 Console.ReadKey();
 Console.Clear();
 
-#region Employee repository tests
+#region Order repository tests
 
-    IRepositoryServices<Employee, string> employeeRepository = new EmployeeRepository(dbContext);
+    IRepositoryServices<Order, string> orderRepository = new OrderRepository(dbContext);
     
-    IEmployeeServices employeeServices = new EmployeeRepository(dbContext);
+    IOrderServices orderServices = new OrderRepository(dbContext);
 
-    var employeeRepositoryTest = new EmployeeRepositoryTest(employeeRepository, employeeServices);
+    var orderRepositoryTest = new OrderRepositoryTest(orderRepository, orderServices);
 
-    await employeeRepositoryTest.TestGetAllAsync();
+    await orderRepositoryTest.TestGetAllAsync();
 
-    await employeeRepositoryTest.TestGetByIdAsync();
+    await orderRepositoryTest.TestGetByIdAsync();
 
-    await employeeRepositoryTest.TestAddAsync();
+    await orderRepositoryTest.TestAddAsync();
 
-    await employeeRepositoryTest.TestUpdateAsync();
+    await orderRepositoryTest.TestUpdateAsync();
 
-    await employeeRepositoryTest.TestDeleteAsync();
-
-#endregion
-
-Console.ReadKey();
-Console.Clear();
-
-#region Restaurant repository tests
-
-    var restaurantRepository = new RestaurantRepository(dbContext);
-
-    var restaurantRepositoryTest = new RestaurantRepositoryTest(restaurantRepository);
-
-    await restaurantRepositoryTest.TestGetAllAsync();
-
-    await restaurantRepositoryTest.TestGetByIdAsync();
-
-    await restaurantRepositoryTest.TestAddAsync();
-
-    await restaurantRepositoryTest.TestUpdateAsync();
-
-    await restaurantRepositoryTest.TestDeleteAsync();
+    await orderRepositoryTest.TestDeleteAsync();
 
 #endregion
