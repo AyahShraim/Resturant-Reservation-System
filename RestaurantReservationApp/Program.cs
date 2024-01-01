@@ -43,3 +43,23 @@ Console.Clear();
 
 #endregion
 
+Console.ReadKey();
+Console.Clear();
+
+#region OrderItem repository tests
+
+    var orderItemRepository = new OrderItemRepository(dbContext);
+
+    var orderItemRepositoryTest = new OrderItemRepositoryTest(orderItemRepository);
+
+    await orderItemRepositoryTest.TestGetAllAsync();
+
+    await orderItemRepositoryTest.TestGetByIdAsync();
+
+    await orderItemRepositoryTest.TestAddAsync();
+
+    await orderItemRepositoryTest.TestUpdateAsync();
+
+    await orderItemRepositoryTest.TestDeleteAsync();
+
+#endregion
