@@ -2,9 +2,8 @@
 using RestaurantReservation.Db.DataModels;
 using RestaurantReservation.Db.Enums;
 using Microsoft.Extensions.Logging;
-using RestaurantReservation.Db.ViewsModels;
 using RestaurantReservation.Db.SampleData;
-using RestaurantReservation.Db.StoredProcedureModels;
+
 namespace RestaurantReservation.Db
 {
     public class RestaurantReservationDbContext : DbContext
@@ -17,9 +16,6 @@ namespace RestaurantReservation.Db
         public DbSet<MenuItem> MenuItems { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<ReservationDetails> ReservationsDetails { get; set; }
-        public DbSet<EmployeesWithRestaurantDetails> EmployeesWithRestaurantDetails { get; set; }
-        public DbSet<CustomerWithLargePartySizeReservation> CustomersWithLargePartySizeReservation {  get; set; }
 
         public RestaurantReservationDbContext() { }
 
@@ -63,25 +59,6 @@ namespace RestaurantReservation.Db
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Seed();
-
-            modelBuilder.Entity<ReservationDetails>().HasNoKey()
-                .ToView(nameof(ReservationsDetails));
-
-            modelBuilder.Entity<EmployeesWithRestaurantDetails>().HasNoKey()
-                .ToView(nameof(EmployeesWithRestaurantDetails));
-
-            modelBuilder.Entity<CustomerWithLargePartySizeReservation>().HasNoKey();
-
-            modelBuilder.HasDbFunction(typeof(RestaurantReservationDbContext)
-                .GetMethod(nameof(CalculateRestaurantTotalRevenue)))
-                .HasName("fn_CalculateRestaurantTotalRevenue");
-        }
-
-        [DbFunction("fn_CalculateRestaurantTotalRevenue", Schema = "dbo")]
-        public decimal CalculateRestaurantTotalRevenue(int restaurantId)
-        {
-            return Employees.Take(1).Select(x => CalculateRestaurantTotalRevenue(restaurantId))
-            .SingleOrDefault();
         }
     }
 }
