@@ -68,7 +68,18 @@ namespace RestaurantReservation.Db
             modelBuilder.Entity<EmployeesWithRestaurantDetails>().HasNoKey()
                 .ToView(nameof(EmployeesWithRestaurantDetails));
 
+            modelBuilder.HasDbFunction(typeof(RestaurantReservationDbContext)
+               .GetMethod(nameof(CalculateRestaurantTotalRevenue)))
+               .HasName("fn_CalculateRestaurantTotalRevenue");
+
             modelBuilder.Seed();
+        }
+
+        [DbFunction("fn_CalculateRestaurantTotalRevenue", Schema = "dbo")]
+        public decimal CalculateRestaurantTotalRevenue(int restaurantId)
+        {
+            return Employees.Take(1).Select(x => CalculateRestaurantTotalRevenue(restaurantId))
+            .SingleOrDefault();
         }
     }
 }
