@@ -159,6 +159,29 @@ await orderRepositoryTest.TestDeleteAsync();
 Console.ReadKey();
 Console.Clear();
 
+#region Reservation repository tests
+
+IRepositoryServices<Reservation, string> reservationRepository = new ReservationRepository(dbContext);
+
+IReservationServices reservationServices = new ReservationRepository(dbContext);
+
+var reservationRepositoryTest = new ReservationRepositoryTest(reservationRepository, reservationServices);
+
+await reservationRepositoryTest.TestGetAllAsync();
+
+await reservationRepositoryTest.TestGetByIdAsync();
+
+await reservationRepositoryTest.TestAddAsync();
+
+await reservationRepositoryTest.TestUpdateAsync();
+
+await reservationRepositoryTest.TestDeleteAsync();
+
+#endregion
+
+Console.ReadKey();
+Console.Clear();
+
 #region views teset
 
 var viewTests = new ViewsTest(dbContext);
@@ -171,10 +194,37 @@ await viewTests.TestEmployeesWithRestaurantDetailsAsync();
 
 Console.ReadKey();
 Console.Clear();
+
 #region database function test
 
     DbFunctionsTest dataBaseFunctionsTest = new(dbContext);
 
     dataBaseFunctionsTest.TestCalculateRestaurantTotalRevenue();
+
+#endregion region 
+
+Console.ReadKey();
+Console.Clear();
+
+#region Methods tests
+
+await employeeRepositoryTest.TestListManagerAsync();
+
+await reservationRepositoryTest.TestGetReservationByCustomerIdAsync();
+
+await orderRepositoryTest.TestListOrdersAndMenuItemsAsync();
+
+await orderRepositoryTest.TestListOrderedMenuItemsAsync();
+
+await orderRepositoryTest.TestCalculateAverageOrderAmountAsync();
+
+#endregion
+
+Console.ReadKey();
+Console.Clear();
+
+#region stored procedure test 
+
+await reservationRepositoryTest.TestCustomerWithLargePartySizeReservation();
 
 #endregion region 
