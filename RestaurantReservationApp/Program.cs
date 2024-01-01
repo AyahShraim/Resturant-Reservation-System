@@ -1,4 +1,6 @@
 ﻿using RestaurantReservation.Db;
+using RestaurantReservation.Db.DataModels;
+using RestaurantReservation.Db.IServices;
 using RestaurantReservation.Db.Repositories;
 using RestaurantReservationApp.Tests.RepositoryInvokers_SampleData;
 
@@ -67,20 +69,64 @@ Console.Clear();
 Console.ReadKey();
 Console.Clear();
 
-#region Table repository tests
+//#region Table repository tests
 
-    var tableRepository = new TableRepository(dbContext);
+//    var tableRepository = new TableRepository(dbContext);
 
-    var tableRepositoryTest = new TableRepositoryTest(tableRepository);
+//    var tableRepositoryTest = new TableRepositoryTest(tableRepository);
 
-    await tableRepositoryTest.TestGetAllAsync();
+//    await tableRepositoryTest.TestGetAllAsync();
 
-    await tableRepositoryTest.TestGetByIdAsync();
+//    await tableRepositoryTest.TestGetByIdAsync();
 
-    await tableRepositoryTest.TestAddAsync();
+//    await tableRepositoryTest.TestAddAsync();
 
-    await tableRepositoryTest.TestUpdateAsync();
+//    await tableRepositoryTest.TestUpdateAsync();
 
-    await tableRepositoryTest.TestDeleteAsync();
+//    await tableRepositoryTest.TestDeleteAsync();
+
+//#endregion
+
+Console.ReadKey();
+Console.Clear();
+
+#region Employee repository tests
+
+    IRepositoryServices<Employee, string> employeeRepository = new EmployeeRepository(dbContext);
+    
+    IEmployeeServices employeeServices = new EmployeeRepository(dbContext);
+
+    var employeeRepositoryTest = new EmployeeRepositoryTest(employeeRepository, employeeServices);
+
+    await employeeRepositoryTest.TestGetAllAsync();
+
+    await employeeRepositoryTest.TestGetByIdAsync();
+
+    await employeeRepositoryTest.TestAddAsync();
+
+    await employeeRepositoryTest.TestUpdateAsync();
+
+    await employeeRepositoryTest.TestDeleteAsync();
+
+#endregion
+
+Console.ReadKey();
+Console.Clear();
+
+#region Restaurant repository tests
+
+    var restaurantRepository = new RestaurantRepository(dbContext);
+
+    var restaurantRepositoryTest = new RestaurantRepositoryTest(restaurantRepository);
+
+    await restaurantRepositoryTest.TestGetAllAsync();
+
+    await restaurantRepositoryTest.TestGetByIdAsync();
+
+    await restaurantRepositoryTest.TestAddAsync();
+
+    await restaurantRepositoryTest.TestUpdateAsync();
+
+    await restaurantRepositoryTest.TestDeleteAsync();
 
 #endregion
