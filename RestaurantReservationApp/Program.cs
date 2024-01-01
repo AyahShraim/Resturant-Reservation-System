@@ -29,17 +29,17 @@ Console.Clear();
 
     var menuItemRepository = new MenuItemRepository(dbContext);
 
-    var tableRepositoryTest = new MenuItemRepositoryTest(menuItemRepository);
+    var menuItemRepositoryTest = new MenuItemRepositoryTest(menuItemRepository);
 
-    await tableRepositoryTest.TestGetAllAsync();
+    await menuItemRepositoryTest.TestGetAllAsync();
 
-    await tableRepositoryTest.TestGetByIdAsync();
+    await menuItemRepositoryTest.TestGetByIdAsync();
 
-    await tableRepositoryTest.TestAddAsync();
+    await menuItemRepositoryTest.TestAddAsync();
 
-    await tableRepositoryTest.TestUpdateAsync();
+    await menuItemRepositoryTest.TestUpdateAsync();
 
-    await tableRepositoryTest.TestDeleteAsync();
+    await menuItemRepositoryTest.TestDeleteAsync();
 
 #endregion
 
@@ -61,5 +61,26 @@ Console.Clear();
     await orderItemRepositoryTest.TestUpdateAsync();
 
     await orderItemRepositoryTest.TestDeleteAsync();
+
+#endregion
+
+Console.ReadKey();
+Console.Clear();
+
+#region Table repository tests
+
+    var tableRepository = new TableRepository(dbContext);
+
+    var tableRepositoryTest = new TableRepositoryTest(tableRepository);
+
+    await tableRepositoryTest.TestGetAllAsync();
+
+    await tableRepositoryTest.TestGetByIdAsync();
+
+    await tableRepositoryTest.TestAddAsync();
+
+    await tableRepositoryTest.TestUpdateAsync();
+
+    await tableRepositoryTest.TestDeleteAsync();
 
 #endregion
