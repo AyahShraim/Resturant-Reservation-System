@@ -127,6 +127,160 @@ namespace RestaurantReservation.Db.Migrations
                     b.HasIndex("RestaurantId");
 
                     b.ToTable("Employees");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FirstName = "John",
+                            LastName = "Doe",
+                            Position = "Manager",
+                            RestaurantId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            FirstName = "Alice",
+                            LastName = "Smith",
+                            Position = "Waiter",
+                            RestaurantId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            FirstName = "Bob",
+                            LastName = "Johnson",
+                            Position = "Chef",
+                            RestaurantId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            FirstName = "Emily",
+                            LastName = "Williams",
+                            Position = "Cashier",
+                            RestaurantId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            FirstName = "Sophia",
+                            LastName = "Jones",
+                            Position = "Manager",
+                            RestaurantId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            FirstName = "Daniel",
+                            LastName = "Miller",
+                            Position = "Waiter",
+                            RestaurantId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            FirstName = "Olivia",
+                            LastName = "Davis",
+                            Position = "Waiter",
+                            RestaurantId = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            FirstName = "Bella",
+                            LastName = "Hamilton",
+                            Position = "Chef",
+                            RestaurantId = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            FirstName = "Emma",
+                            LastName = "Rodriguez",
+                            Position = "Manager",
+                            RestaurantId = 3
+                        },
+                        new
+                        {
+                            Id = 10,
+                            FirstName = "Michael",
+                            LastName = "Brown",
+                            Position = "Waiter",
+                            RestaurantId = 3
+                        },
+                        new
+                        {
+                            Id = 11,
+                            FirstName = "James",
+                            LastName = "Garcia",
+                            Position = "Chef",
+                            RestaurantId = 3
+                        },
+                        new
+                        {
+                            Id = 12,
+                            FirstName = "Sophie",
+                            LastName = "Taylor",
+                            Position = "Manager",
+                            RestaurantId = 4
+                        },
+                        new
+                        {
+                            Id = 13,
+                            FirstName = "William",
+                            LastName = "Johnson",
+                            Position = "Waiter",
+                            RestaurantId = 4
+                        },
+                        new
+                        {
+                            Id = 14,
+                            FirstName = "Peter",
+                            LastName = "Ellison",
+                            Position = "Chef",
+                            RestaurantId = 4
+                        },
+                        new
+                        {
+                            Id = 15,
+                            FirstName = "Oliver",
+                            LastName = "Smith",
+                            Position = "Manager",
+                            RestaurantId = 5
+                        },
+                        new
+                        {
+                            Id = 16,
+                            FirstName = "Amelia",
+                            LastName = "Brown",
+                            Position = "Waiter",
+                            RestaurantId = 5
+                        },
+                        new
+                        {
+                            Id = 17,
+                            FirstName = "Ethan",
+                            LastName = "Davis",
+                            Position = "Chef",
+                            RestaurantId = 5
+                        },
+                        new
+                        {
+                            Id = 18,
+                            FirstName = "William",
+                            LastName = "Davis",
+                            Position = "Cashier",
+                            RestaurantId = 5
+                        },
+                        new
+                        {
+                            Id = 19,
+                            FirstName = "Ali",
+                            LastName = "Clark",
+                            Position = "Chef",
+                            RestaurantId = 5
+                        });
                 });
 
             modelBuilder.Entity("RestaurantReservation.Db.DataModels.MenuItem", b =>
@@ -157,6 +311,128 @@ namespace RestaurantReservation.Db.Migrations
                     b.HasIndex("RestaurantId");
 
                     b.ToTable("MenuItems");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Juicy beef patty with lettuce, tomato, and cheese",
+                            Name = "Classic Burger",
+                            Price = 8.99m,
+                            RestaurantId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Golden fried chicken with mayo and pickles",
+                            Name = "Crispy Chicken Sandwich",
+                            Price = 9.99m,
+                            RestaurantId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Grilled veggies wrapped in a tortilla with hummus",
+                            Name = "Vegetarian Wrap",
+                            Price = 7.99m,
+                            RestaurantId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Assorted sushi rolls with soy sauce",
+                            Name = "Sushi Combo",
+                            Price = 15.99m,
+                            RestaurantId = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Crispy shrimp tempura with dipping sauce",
+                            Name = "Tempura Shrimp",
+                            Price = 12.99m,
+                            RestaurantId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "Traditional Japanese soybean soup with tofu",
+                            Name = "Miso Soup",
+                            Price = 4.99m,
+                            RestaurantId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Description = "Battered and fried chicken with sweet and sour sauce",
+                            Name = "Sweet and Sour Chicken",
+                            Price = 11.99m,
+                            RestaurantId = 3
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Description = "Stir-fried beef with broccoli in a savory sauce",
+                            Name = "Beef and Broccoli",
+                            Price = 13.99m,
+                            RestaurantId = 3
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Description = "Fried rice with shrimp, vegetables, and soy sauce",
+                            Name = "Shrimp Fried Rice",
+                            Price = 10.99m,
+                            RestaurantId = 3
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Description = "Assorted seafood including shrimp, fish, and calamari",
+                            Name = "Seafood Platter",
+                            Price = 18.99m,
+                            RestaurantId = 4
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Description = "Spicy buffalo chicken wings with ranch dressing",
+                            Name = "Chicken Wings",
+                            Price = 9.99m,
+                            RestaurantId = 4
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Description = "Fresh salmon fillet grilled to perfection",
+                            Name = "Grilled Salmon",
+                            Price = 14.99m,
+                            RestaurantId = 4
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Description = "Classic pizza with tomato, mozzarella, and basil",
+                            Name = "Margherita Pizza",
+                            Price = 12.99m,
+                            RestaurantId = 5
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Description = "Creamy pasta with bacon, eggs, and parmesan cheese",
+                            Name = "Pasta Carbonara",
+                            Price = 15.99m,
+                            RestaurantId = 5
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Description = "Italian dessert with layers of coffee-soaked ladyfingers and mascarpone",
+                            Name = "Tiramisu",
+                            Price = 7.99m,
+                            RestaurantId = 5
+                        });
                 });
 
             modelBuilder.Entity("RestaurantReservation.Db.DataModels.Order", b =>
@@ -186,6 +462,120 @@ namespace RestaurantReservation.Db.Migrations
                     b.HasIndex("ReservationId");
 
                     b.ToTable("Orders");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Date = new DateTime(2023, 12, 30, 16, 49, 29, 425, DateTimeKind.Local).AddTicks(1191),
+                            EmployeeId = 2,
+                            ReservationId = 1,
+                            TotalAmount = 37.96m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Date = new DateTime(2023, 12, 31, 16, 49, 29, 425, DateTimeKind.Local).AddTicks(1205),
+                            EmployeeId = 6,
+                            ReservationId = 2,
+                            TotalAmount = 33.97m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Date = new DateTime(2023, 12, 28, 16, 49, 29, 425, DateTimeKind.Local).AddTicks(1212),
+                            EmployeeId = 10,
+                            ReservationId = 4,
+                            TotalAmount = 68.94m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Date = new DateTime(2023, 12, 30, 16, 49, 29, 425, DateTimeKind.Local).AddTicks(1219),
+                            EmployeeId = 13,
+                            ReservationId = 9,
+                            TotalAmount = 87.94m
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Date = new DateTime(2023, 12, 29, 16, 49, 29, 425, DateTimeKind.Local).AddTicks(1226),
+                            EmployeeId = 16,
+                            ReservationId = 11,
+                            TotalAmount = 36.97m
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Date = new DateTime(2023, 12, 30, 16, 49, 29, 425, DateTimeKind.Local).AddTicks(1234),
+                            EmployeeId = 2,
+                            ReservationId = 5,
+                            TotalAmount = 33.96m
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Date = new DateTime(2023, 12, 31, 16, 49, 29, 425, DateTimeKind.Local).AddTicks(1241),
+                            EmployeeId = 7,
+                            ReservationId = 3,
+                            TotalAmount = 95.94m
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Date = new DateTime(2023, 12, 27, 16, 49, 29, 425, DateTimeKind.Local).AddTicks(1248),
+                            EmployeeId = 10,
+                            ReservationId = 8,
+                            TotalAmount = 110.91m
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Date = new DateTime(2023, 12, 30, 16, 49, 29, 425, DateTimeKind.Local).AddTicks(1254),
+                            EmployeeId = 13,
+                            ReservationId = 9,
+                            TotalAmount = 37.98m
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Date = new DateTime(2023, 12, 30, 16, 49, 29, 425, DateTimeKind.Local).AddTicks(1263),
+                            EmployeeId = 13,
+                            ReservationId = 9,
+                            TotalAmount = 39.97m
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Date = new DateTime(2023, 12, 28, 16, 49, 29, 425, DateTimeKind.Local).AddTicks(1269),
+                            EmployeeId = 10,
+                            ReservationId = 4,
+                            TotalAmount = 23.98m
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Date = new DateTime(2023, 12, 28, 16, 49, 29, 425, DateTimeKind.Local).AddTicks(1275),
+                            EmployeeId = 10,
+                            ReservationId = 4,
+                            TotalAmount = 13.99m
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Date = new DateTime(2023, 12, 29, 16, 49, 29, 425, DateTimeKind.Local).AddTicks(1282),
+                            EmployeeId = 16,
+                            ReservationId = 11,
+                            TotalAmount = 57.96m
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Date = new DateTime(2023, 12, 29, 16, 49, 29, 425, DateTimeKind.Local).AddTicks(1289),
+                            EmployeeId = 16,
+                            ReservationId = 11,
+                            TotalAmount = 15.99m
+                        });
                 });
 
             modelBuilder.Entity("RestaurantReservation.Db.DataModels.OrderItem", b =>
@@ -212,6 +602,197 @@ namespace RestaurantReservation.Db.Migrations
                     b.HasIndex("OrderId");
 
                     b.ToTable("OrderItems");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            MenuItemId = 1,
+                            OrderId = 1,
+                            Quantity = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            MenuItemId = 2,
+                            OrderId = 1,
+                            Quantity = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            MenuItemId = 4,
+                            OrderId = 2,
+                            Quantity = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            MenuItemId = 5,
+                            OrderId = 2,
+                            Quantity = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            MenuItemId = 6,
+                            OrderId = 2,
+                            Quantity = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            MenuItemId = 7,
+                            OrderId = 3,
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            Id = 7,
+                            MenuItemId = 9,
+                            OrderId = 3,
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            Id = 8,
+                            MenuItemId = 10,
+                            OrderId = 4,
+                            Quantity = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            MenuItemId = 11,
+                            OrderId = 4,
+                            Quantity = 2
+                        },
+                        new
+                        {
+                            Id = 10,
+                            MenuItemId = 12,
+                            OrderId = 4,
+                            Quantity = 2
+                        },
+                        new
+                        {
+                            Id = 11,
+                            MenuItemId = 13,
+                            OrderId = 5,
+                            Quantity = 1
+                        },
+                        new
+                        {
+                            Id = 12,
+                            MenuItemId = 14,
+                            OrderId = 5,
+                            Quantity = 1
+                        },
+                        new
+                        {
+                            Id = 13,
+                            MenuItemId = 15,
+                            OrderId = 5,
+                            Quantity = 1
+                        },
+                        new
+                        {
+                            Id = 14,
+                            MenuItemId = 1,
+                            OrderId = 6,
+                            Quantity = 2
+                        },
+                        new
+                        {
+                            Id = 15,
+                            MenuItemId = 3,
+                            OrderId = 6,
+                            Quantity = 2
+                        },
+                        new
+                        {
+                            Id = 16,
+                            MenuItemId = 4,
+                            OrderId = 7,
+                            Quantity = 6
+                        },
+                        new
+                        {
+                            Id = 17,
+                            MenuItemId = 7,
+                            OrderId = 8,
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            Id = 18,
+                            MenuItemId = 8,
+                            OrderId = 8,
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            Id = 19,
+                            MenuItemId = 9,
+                            OrderId = 8,
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            Id = 20,
+                            MenuItemId = 10,
+                            OrderId = 9,
+                            Quantity = 2
+                        },
+                        new
+                        {
+                            Id = 21,
+                            MenuItemId = 11,
+                            OrderId = 10,
+                            Quantity = 1
+                        },
+                        new
+                        {
+                            Id = 22,
+                            MenuItemId = 12,
+                            OrderId = 10,
+                            Quantity = 2
+                        },
+                        new
+                        {
+                            Id = 23,
+                            MenuItemId = 7,
+                            OrderId = 11,
+                            Quantity = 2
+                        },
+                        new
+                        {
+                            Id = 24,
+                            MenuItemId = 8,
+                            OrderId = 12,
+                            Quantity = 1
+                        },
+                        new
+                        {
+                            Id = 25,
+                            MenuItemId = 13,
+                            OrderId = 13,
+                            Quantity = 2
+                        },
+                        new
+                        {
+                            Id = 26,
+                            MenuItemId = 14,
+                            OrderId = 13,
+                            Quantity = 2
+                        },
+                        new
+                        {
+                            Id = 27,
+                            MenuItemId = 14,
+                            OrderId = 14,
+                            Quantity = 2
+                        });
                 });
 
             modelBuilder.Entity("RestaurantReservation.Db.DataModels.Reservation", b =>
@@ -246,6 +827,107 @@ namespace RestaurantReservation.Db.Migrations
                     b.HasIndex("TableId");
 
                     b.ToTable("Reservations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CustomerId = 5,
+                            Date = new DateTime(2023, 12, 30, 16, 49, 29, 425, DateTimeKind.Local).AddTicks(636),
+                            PartySize = 2,
+                            RestaurantId = 1,
+                            TableId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CustomerId = 1,
+                            Date = new DateTime(2023, 12, 31, 16, 49, 29, 425, DateTimeKind.Local).AddTicks(715),
+                            PartySize = 4,
+                            RestaurantId = 2,
+                            TableId = 7
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CustomerId = 2,
+                            Date = new DateTime(2023, 12, 31, 16, 49, 29, 425, DateTimeKind.Local).AddTicks(722),
+                            PartySize = 6,
+                            RestaurantId = 2,
+                            TableId = 10
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CustomerId = 3,
+                            Date = new DateTime(2023, 12, 28, 16, 49, 29, 425, DateTimeKind.Local).AddTicks(729),
+                            PartySize = 8,
+                            RestaurantId = 3,
+                            TableId = 15
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CustomerId = 4,
+                            Date = new DateTime(2023, 12, 30, 16, 49, 29, 425, DateTimeKind.Local).AddTicks(736),
+                            PartySize = 10,
+                            RestaurantId = 1,
+                            TableId = 5
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CustomerId = 5,
+                            Date = new DateTime(2023, 12, 30, 16, 49, 29, 425, DateTimeKind.Local).AddTicks(744),
+                            PartySize = 8,
+                            RestaurantId = 3,
+                            TableId = 15
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CustomerId = 1,
+                            Date = new DateTime(2023, 12, 30, 16, 49, 29, 425, DateTimeKind.Local).AddTicks(750),
+                            PartySize = 14,
+                            RestaurantId = 3,
+                            TableId = 13
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CustomerId = 2,
+                            Date = new DateTime(2023, 12, 27, 16, 49, 29, 425, DateTimeKind.Local).AddTicks(757),
+                            PartySize = 2,
+                            RestaurantId = 3,
+                            TableId = 11
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CustomerId = 3,
+                            Date = new DateTime(2023, 12, 29, 16, 49, 29, 425, DateTimeKind.Local).AddTicks(763),
+                            PartySize = 4,
+                            RestaurantId = 4,
+                            TableId = 18
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CustomerId = 1,
+                            Date = new DateTime(2023, 12, 25, 16, 49, 29, 425, DateTimeKind.Local).AddTicks(771),
+                            PartySize = 20,
+                            RestaurantId = 4,
+                            TableId = 20
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CustomerId = 3,
+                            Date = new DateTime(2023, 12, 29, 16, 49, 29, 425, DateTimeKind.Local).AddTicks(778),
+                            PartySize = 6,
+                            RestaurantId = 5,
+                            TableId = 22
+                        });
                 });
 
             modelBuilder.Entity("RestaurantReservation.Db.DataModels.Restaurant", b =>
@@ -279,6 +961,48 @@ namespace RestaurantReservation.Db.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Restaurants");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "19 Old Fulton St., Brooklyn",
+                            Name = "BURGER KING",
+                            OpeningHours = "Saturday-Thursday: 10:00AM-5:00AM",
+                            PhoneNumber = "+17185551234"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "123 Main St., Cityville",
+                            Name = "ABC SUSHI",
+                            OpeningHours = "Monday-Sunday: 11:00AM-8:00PM",
+                            PhoneNumber = "+14304461234"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Address = "456 Elm St., Townsville",
+                            Name = "CHINESE KITCHEN",
+                            OpeningHours = "Tuesday-Saturday: 12:30PM-9:00PM",
+                            PhoneNumber = "+14304462345"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Address = "789 Oak St., Villageton",
+                            Name = "DASH SEAFOOD & CHICKEN",
+                            OpeningHours = "Wednesday-Monday: 3:00PM-10:30PM",
+                            PhoneNumber = "+14304463456"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Address = "321 Maple St., Hamletville",
+                            Name = "Patsy's Pizza",
+                            OpeningHours = "Thursday-Tuesday: 4:00PM-11:00PM",
+                            PhoneNumber = "+14304464567"
+                        });
                 });
 
             modelBuilder.Entity("RestaurantReservation.Db.DataModels.Table", b =>
@@ -300,6 +1024,230 @@ namespace RestaurantReservation.Db.Migrations
                     b.HasIndex("RestaurantId");
 
                     b.ToTable("Tables");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Capacity = 2,
+                            RestaurantId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Capacity = 4,
+                            RestaurantId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Capacity = 6,
+                            RestaurantId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Capacity = 8,
+                            RestaurantId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Capacity = 10,
+                            RestaurantId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Capacity = 2,
+                            RestaurantId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Capacity = 4,
+                            RestaurantId = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Capacity = 4,
+                            RestaurantId = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Capacity = 4,
+                            RestaurantId = 2
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Capacity = 8,
+                            RestaurantId = 2
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Capacity = 2,
+                            RestaurantId = 3
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Capacity = 10,
+                            RestaurantId = 3
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Capacity = 14,
+                            RestaurantId = 3
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Capacity = 4,
+                            RestaurantId = 3
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Capacity = 10,
+                            RestaurantId = 3
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Capacity = 2,
+                            RestaurantId = 4
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Capacity = 18,
+                            RestaurantId = 4
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Capacity = 4,
+                            RestaurantId = 4
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Capacity = 6,
+                            RestaurantId = 4
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Capacity = 20,
+                            RestaurantId = 4
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Capacity = 4,
+                            RestaurantId = 5
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Capacity = 6,
+                            RestaurantId = 5
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Capacity = 8,
+                            RestaurantId = 5
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Capacity = 10,
+                            RestaurantId = 5
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Capacity = 12,
+                            RestaurantId = 5
+                        });
+                });
+
+            modelBuilder.Entity("RestaurantReservation.Db.Views.EmployeesWithRestaurantDetails", b =>
+                {
+                    b.Property<string>("EmployeeFirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EmployeeLastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasColumnType("varchar(10)");
+
+                    b.Property<string>("RestaurantAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RestaurantId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RestaurantName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RestaurantPhone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable((string)null);
+
+                    b.ToView("EmployeesWithRestaurantDetails", (string)null);
+                });
+
+            modelBuilder.Entity("RestaurantReservation.Db.Views.ReservationDetails", b =>
+                {
+                    b.Property<string>("CustomerFirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CustomerLastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ReservationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("RestaurantAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RestaurantId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RestaurantName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable((string)null);
+
+                    b.ToView("ReservationsDetails", (string)null);
                 });
 
             modelBuilder.Entity("RestaurantReservation.Db.DataModels.Employee", b =>
@@ -348,7 +1296,7 @@ namespace RestaurantReservation.Db.Migrations
                     b.HasOne("RestaurantReservation.Db.DataModels.MenuItem", "MenuItem")
                         .WithMany("OrderItems")
                         .HasForeignKey("MenuItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("RestaurantReservation.Db.DataModels.Order", "Order")
