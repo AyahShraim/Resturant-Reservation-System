@@ -22,3 +22,24 @@ using var dbContext = new RestaurantReservationDbContext();
 
 #endregion
 
+Console.ReadKey();
+Console.Clear();
+
+#region Menu Item repository tests
+
+    var menuItemRepository = new MenuItemRepository(dbContext);
+
+    var tableRepositoryTest = new MenuItemRepositoryTest(menuItemRepository);
+
+    await tableRepositoryTest.TestGetAllAsync();
+
+    await tableRepositoryTest.TestGetByIdAsync();
+
+    await tableRepositoryTest.TestAddAsync();
+
+    await tableRepositoryTest.TestUpdateAsync();
+
+    await tableRepositoryTest.TestDeleteAsync();
+
+#endregion
+
