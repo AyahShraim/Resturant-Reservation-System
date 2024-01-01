@@ -3,6 +3,7 @@ using RestaurantReservation.Db.DataModels;
 using RestaurantReservation.Db.Enums;
 using Microsoft.Extensions.Logging;
 using RestaurantReservation.Db.SampleData;
+using RestaurantReservation.Db.ViewsModels;
 
 namespace RestaurantReservation.Db
 {
@@ -16,6 +17,8 @@ namespace RestaurantReservation.Db
         public DbSet<MenuItem> MenuItems { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<ReservationDetails> ReservationsDetails { get; set; }
+        public DbSet<EmployeesWithRestaurantDetails> EmployeesWithRestaurantDetails { get; set; }
 
         public RestaurantReservationDbContext() { }
 
@@ -57,6 +60,13 @@ namespace RestaurantReservation.Db
                 .WithMany(menuItem => menuItem.OrderItems)
                 .HasForeignKey(oi => oi.MenuItemId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+
+            modelBuilder.Entity<ReservationDetails>().HasNoKey()
+                .ToView(nameof(ReservationsDetails));
+
+            modelBuilder.Entity<EmployeesWithRestaurantDetails>().HasNoKey()
+                .ToView(nameof(EmployeesWithRestaurantDetails));
 
             modelBuilder.Seed();
         }
