@@ -16,6 +16,5 @@ namespace RestaurantReservationApp.Invokers_SampleData.DBFunctionsInvokers
             decimal? totalRevenue = _dbContext.CalculateRestaurantTotalRevenue(restaurantId);
             Console.WriteLine($"Total revenue for restaurant with id {restaurantId} = {totalRevenue:C}");
         }
-
     }
 }

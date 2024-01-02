@@ -1,7 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using RestaurantReservation.Db.DataModels;
+﻿using RestaurantReservation.Db.DataModels;
 using RestaurantReservation.Db.Enums;
-using Microsoft.Extensions.Logging;
 using RestaurantReservation.Db.SampleData;
 using RestaurantReservation.Db.ViewsModels;
 using RestaurantReservation.Db.StoredProcedureModels;
