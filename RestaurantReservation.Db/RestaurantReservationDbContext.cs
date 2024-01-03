@@ -3,6 +3,8 @@ using RestaurantReservation.Db.Enums;
 using RestaurantReservation.Db.SampleData;
 using RestaurantReservation.Db.ViewsModels;
 using RestaurantReservation.Db.StoredProcedureModels;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace RestaurantReservation.Db
 {

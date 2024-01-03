@@ -2,10 +2,10 @@
 
 namespace RestaurantReservationApp.Invokers_SampleData.DBFunctionsInvokers
 {
-    public class DbFunctionsProceduresTest
+    public class DbFunctionsTest
     {
         private readonly RestaurantReservationDbContext _dbContext;
-        public DbFunctionsProceduresTest(RestaurantReservationDbContext dbContext)
+        public DbFunctionsTest(RestaurantReservationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
