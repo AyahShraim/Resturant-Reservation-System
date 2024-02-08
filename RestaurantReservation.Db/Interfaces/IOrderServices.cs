@@ -1,6 +1,6 @@
-﻿using RestaurantReservation.Db.DataModels;
+﻿using RestaurantReservation.Db.Entities;
 
-namespace RestaurantReservation.Db.IServices
+namespace RestaurantReservation.Db.Interfaces
 {
     public interface IOrderServices
     {

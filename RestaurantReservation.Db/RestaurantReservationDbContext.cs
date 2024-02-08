@@ -1,4 +1,4 @@
-﻿using RestaurantReservation.Db.DataModels;
+﻿using RestaurantReservation.Db.Entities;
 using RestaurantReservation.Db.Enums;
 using RestaurantReservation.Db.SampleData;
 using RestaurantReservation.Db.ViewsModels;

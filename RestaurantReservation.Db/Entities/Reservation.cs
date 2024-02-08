@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace RestaurantReservation.Db.DataModels
+namespace RestaurantReservation.Db.Entities
 {
     public class Reservation
     {

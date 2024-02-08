@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using RestaurantReservation.Db.DataModels;
-using RestaurantReservation.Db.IServices;
+using RestaurantReservation.Db.Entities;
+using RestaurantReservation.Db.Interfaces;
 using RestaurantReservation.Db.StoredProcedureModels;
 using RestaurantReservation.Db.Utilities;
 

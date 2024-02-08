@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RestaurantReservation.Db.DataModels
+namespace RestaurantReservation.Db.Entities
 {
     public class MenuItem
     {
