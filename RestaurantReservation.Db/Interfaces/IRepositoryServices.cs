@@ -1,8 +1,8 @@
 ﻿using RestaurantReservation.Db.Utilities;
 
-namespace RestaurantReservation.Db.Repositories
+namespace RestaurantReservation.Db.Interfaces
 {
-    public interface IRepositoryServices<T,TResult>
+    public interface IRepositoryServices<T, TResult>
     {
         Task<OperationResult<TResult>> AddAsync(T entity);
 
@@ -10,7 +10,7 @@ namespace RestaurantReservation.Db.Repositories
 
         Task<T?> GetByIdAsync(int id);
 
-        Task<bool>  DeleteAsync(int id);
+        Task<bool> DeleteAsync(int id);
 
         Task<OperationResult<TResult>> UpdateAsync(int id, T entity);
     }

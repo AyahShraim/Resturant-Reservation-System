@@ -5,6 +5,7 @@ using RestaurantReservation.Db.ViewsModels;
 using RestaurantReservation.Db.StoredProcedureModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace RestaurantReservation.Db
 {
@@ -22,8 +23,11 @@ namespace RestaurantReservation.Db
         public DbSet<EmployeesWithRestaurantDetails> EmployeesWithRestaurantDetails { get; set; }
         public DbSet<CustomerWithLargePartySizeReservation> CustomersWithLargePartySizeReservation { get; set; }
 
-        public RestaurantReservationDbContext() { }
+        public RestaurantReservationDbContext(DbContextOptions<RestaurantReservationDbContext> options)
+           : base(options)
+        {
 
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
