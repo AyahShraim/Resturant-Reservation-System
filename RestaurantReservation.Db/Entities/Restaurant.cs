@@ -2,22 +2,21 @@
 
 namespace RestaurantReservation.Db.Entities
 {
-    public class Restaurant
+    public class Restaurant : BaseEntity
     {
-        public int Id { get; set; }
 
         [MaxLength(100)]
-        public required string Name { get; set; }
+        public string Name { get; set; }
 
         [MaxLength(255)]
-        public required string Address { get; set; }
+        public string Address { get; set; }
 
         [Phone]
         [MaxLength(15)]
-        public required string PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         [MaxLength(100)]
-        public required string OpeningHours { get; set; }
+        public string OpeningHours { get; set; }
 
         public List<Table> Tables { get; set; } = new();
         public List<Reservation> Reservations { get; set; } = new();
