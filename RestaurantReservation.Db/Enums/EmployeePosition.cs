@@ -1,4 +1,4 @@
-﻿namespace RestaurantReservation.Db.Enums
+﻿namespace RestaurantReservation.Db.Enum
 {
     public enum EmployeePosition
     {

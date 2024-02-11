@@ -1,82 +1,51 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RestaurantReservation.Db.Entities;
-using RestaurantReservation.Db.Enums;
+using RestaurantReservation.Db.Enum;
 using RestaurantReservation.Db.Interfaces;
-using RestaurantReservation.Db.Utilities;
+using RestaurantReservation.Db.Pagination;
+
 
 namespace RestaurantReservation.Db.Repositories
 {
-    public class EmployeeRepository : IRepositoryServices<Employee, string>, IEmployeeServices
+    public class EmployeeRepository : Repository<Employee>, IEmployeeServices
     {
         private readonly RestaurantReservationDbContext _dbContext;
-
-        public EmployeeRepository(RestaurantReservationDbContext dbContext)
+        private const int DefaultPageSize = 10;
+        public EmployeeRepository(RestaurantReservationDbContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<OperationResult<string>> AddAsync(Employee employee)
+        public async Task<(IEnumerable<Employee>, PaginationMetaData)> ListManagersAsync(int pageNumber, int pageSize)
         {
-            var existingRestaurant = await _dbContext.Restaurants.FindAsync(employee.RestaurantId);
+            if (pageNumber < 1)
+                pageNumber = 1;
 
-            if (existingRestaurant == null)
-            {
-                return OperationResult<string>.FailureResult("Invalid RestaurantId. The associated restaurant does not exist.");
-            }
+            if (pageSize < 1)
+                pageSize = DefaultPageSize;
 
-            await _dbContext.Employees.AddAsync(employee);
-            await _dbContext.SaveChangesAsync();
-            return OperationResult<string>.SuccessResult($"id: {employee.Id}");
-        }
+            var entities = _dbContext.Employees
+                            .Where(employee => employee.Position == EmployeePosition.Manager);
 
-        public async Task<bool> DeleteAsync(int id)
-        {
-            var employeeToDelete = await _dbContext.Employees.FindAsync(id);
-            if (employeeToDelete != null)
-            {
-                _dbContext.Employees.Remove(employeeToDelete);
-                await _dbContext.SaveChangesAsync();
-                return true;
-            }
-            return false;
-        }
+            var totalRecords = await entities.CountAsync();
 
-        public async Task<OperationResult<string>> UpdateAsync(int id, Employee updatedEmployee)
-        {
-            var existingRestaurant = await _dbContext.Restaurants.FindAsync(updatedEmployee.RestaurantId);
+            var paginationMetaData = new PaginationMetaData(totalRecords, pageSize, pageNumber);
 
-            if (existingRestaurant == null)
-            {
-                return OperationResult<string>.FailureResult("Invalid RestaurantId. The associated restaurant does not exist.");
-            }
-            var rowsEffected = await _dbContext.Employees.Where(employee => employee.Id == id)
-                .ExecuteUpdateAsync(updates =>
-                     updates.SetProperty(employee => employee.FirstName, updatedEmployee.FirstName)
-                            .SetProperty(employee => employee.LastName, updatedEmployee.LastName)
-                            .SetProperty(employee => employee.Position, updatedEmployee.Position)
-                            .SetProperty(employee => employee.RestaurantId, updatedEmployee.RestaurantId));
-            if (rowsEffected == 0)
-            {
-                return OperationResult<string>.FailureResult($"No employee with id {id} found for the update.");
-            }
-            return OperationResult<string>.SuccessResult($"id: {id}");
-        }
-
-        public async Task<IEnumerable<Employee>> GetAllAsync()
-        {
-            return await _dbContext.Employees.ToListAsync();
-        }
-
-        public async Task<Employee?> GetByIdAsync(int id)
-        {
-            return await _dbContext.Employees.FindAsync(id);
-        }
-
-        public async Task<IEnumerable<Employee>> ListManagersAsync()
-        {
-            return await _dbContext.Employees
-                .Where(employee => employee.Position == EmployeePosition.Manager)
+            var managers = await entities
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync();
+
+            return (managers, paginationMetaData);
+        }
+
+        public async Task<decimal> CalculateAverageOrderAmountAsync(int employeeId)
+        {
+            var averageOrderAmount = await _dbContext.Orders
+                .Where(order => order.EmployeeId == employeeId)
+                .AverageAsync(order => (decimal?)order.TotalAmount);
+
+            return averageOrderAmount.HasValue ? averageOrderAmount.Value : 0;
         }
     }
 }
