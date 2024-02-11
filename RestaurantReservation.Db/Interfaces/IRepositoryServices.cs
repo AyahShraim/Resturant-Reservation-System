@@ -1,17 +1,22 @@
-﻿using RestaurantReservation.Db.Utilities;
+﻿using RestaurantReservation.Db.Entities;
+using RestaurantReservation.Db.Pagination;
 
 namespace RestaurantReservation.Db.Interfaces
 {
-    public interface IRepositoryServices<T, TResult>
+    public interface IRepositoryServices<T> where T : BaseEntity
     {
-        Task<OperationResult<TResult>> AddAsync(T entity);
+        Task<bool> AddAsync(T entity);
 
-        Task<IEnumerable<T>> GetAllAsync();
+        Task<(IEnumerable<T>, PaginationMetaData)> GetAllAsync(int pageNumber, int pageSize);
 
         Task<T?> GetByIdAsync(int id);
 
-        Task<bool> DeleteAsync(int id);
+        Task<bool> DeleteAsync(T entity);
 
-        Task<OperationResult<TResult>> UpdateAsync(int id, T entity);
+        Task<bool> UpdateAsync(T entity);
+
+        Task<bool> Save();
+
+        Task<bool> ExistsAsync(int id);
     }
 }
