@@ -2,15 +2,14 @@
 
 namespace RestaurantReservation.Db.Entities
 {
-    public class Customer
+    public class Customer : BaseEntity
     {
-        public int Id { get; set; }
 
         [MaxLength(100)]
-        public required string FirstName { get; set; }
+        public  string FirstName { get; set; }
 
         [MaxLength(100)]
-        public required string LastName { get; set; }
+        public string LastName { get; set; }
 
         [EmailAddress]
         [MaxLength(255)]
@@ -18,7 +17,7 @@ namespace RestaurantReservation.Db.Entities
 
         [Phone]
         [MaxLength(15)]
-        public required string PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         public List<Reservation> Reservations { get; set; } = new();
     }
