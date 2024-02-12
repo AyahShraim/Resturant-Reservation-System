@@ -1,0 +1,6097 @@
+{
+	"info": {
+		"_postman_id": "b0e71f1f-9e90-4ad7-8d6b-461f17f2434d",
+		"name": "Restaurant Reservation Web API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26374109"
+	},
+	"item": [
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"Doe\",\r\n    \"email\": \"ayahh@example.com\",\r\n    \"phoneNumber\": \"1234567890\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/customers",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"customers"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"Doe\",\r\n    \"email\": \"john11@example.com\",\r\n    \"phoneNumber\": \"1234567890\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/customers",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"customers"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 12:16:08 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Location",
+									"value": "https://localhost:7208/api/customers/2001"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2001,\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john11@example.com\",\n    \"phoneNumber\": \"1234567890\"\n}"
+						},
+						{
+							"name": "Error ( email not unique)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"Doe\",\r\n    \"email\": \"John@example.com\",\r\n    \"phoneNumber\": \"1234567890\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/customers",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"customers"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 12:16:51 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"Customers.EmailNotUnique\",\n    \"statusCode\": 409,\n    \"description\": \"The provided email isn't unique\",\n    \"type\": 3\n}"
+						},
+						{
+							"name": "Validation Errors",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"lastName\": \"Doe\",\r\n    \"email\": \"email\",\r\n    \"phoneNumber\": \"1234567890\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/customers",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"customers"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/problem+json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 12:39:30 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\n    \"title\": \"One or more validation errors occurred.\",\n    \"status\": 400,\n    \"traceId\": \"00-58aac606a817a1d5229ce2107a8cfef8-a090bb236b388437-00\",\n    \"errors\": {\n        \"Email\": [\n            \"The Email field is not a valid e-mail address.\"\n        ],\n        \"FirstName\": [\n            \"The FirstName field is required.\"\n        ]\n    }\n}"
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"Doe\",\r\n    \"email\": \"ayahh@example.com\",\r\n    \"phoneNumber\": \"1234567890\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/customers",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"customers"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 12:16:31 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "WWW-Authenticate",
+									"value": "Bearer"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Get customer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/customers/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"customers",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/customers/10000",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"customers",
+										"10000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 11:58:19 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"Customers.NotFound\",\n    \"statusCode\": 404,\n    \"description\": \"Customer with id 10000 not found\",\n    \"type\": 2\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/customers/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"customers",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "112"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 12:12:37 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"firstName\": \"NewFirstName\",\n    \"lastName\": \"newLName\",\n    \"email\": \"emaill@gmail.com\",\n    \"phoneNumber\": \"12345678909\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Customers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3NDM1NTgsImV4cCI6MTcwNzc0NzE1OCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.TjJnAI_XNwtAIl1X0NPNQK-nAWuehtXNWphS1hziF90",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/customers?pageNumber=2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"customers"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Customers (with pagination)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/customers?pageNumber=2",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"customers"
+									],
+									"query": [
+										{
+											"key": "pageNumber",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 11:55:36 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "X-Pagination",
+									"value": "{\"PageNumber\":2,\"PageSize\":10,\"TotalPages\":2,\"TotalRecords\":17}"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 12,\n        \"firstName\": \"sample\",\n        \"lastName\": \"customer\",\n        \"email\": \"sample_customer@gmail.com\",\n        \"phoneNumber\": \"1234567890\"\n    },\n    {\n        \"id\": 13,\n        \"firstName\": \"sample\",\n        \"lastName\": \"customer\",\n        \"email\": \"sample_customer@gmail.com\",\n        \"phoneNumber\": \"1234567890\"\n    },\n    {\n        \"id\": 14,\n        \"firstName\": \"sample\",\n        \"lastName\": \"customer\",\n        \"email\": \"sample_customer@gmail.com\",\n        \"phoneNumber\": \"1234567890\"\n    },\n    {\n        \"id\": 1001,\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"email\": \"john@example.com\",\n        \"phoneNumber\": \"1234567890\"\n    },\n    {\n        \"id\": 1002,\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"email\": \"john@example.com\",\n        \"phoneNumber\": \"1234567890\"\n    },\n    {\n        \"id\": 1003,\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"email\": \"john@example.com\",\n        \"phoneNumber\": \"1234567890\"\n    },\n    {\n        \"id\": 1004,\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"email\": \"john@example.com\",\n        \"phoneNumber\": \"1234567890\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Delete Customers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/customers/100000",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"customers",
+								"100000"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/customers/10000",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"customers",
+										"10000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 12:18:11 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"Customers.NotFound\",\n    \"statusCode\": 404,\n    \"description\": \"Customer with id 10000 not found\",\n    \"type\": 2\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/customers/1001",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"customers",
+										"1001"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 12:18:38 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Put Customer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"updatedName\",\r\n    \"lastName\": \"newLName\",\r\n    \"email\": \"wrongEmail\",\r\n    \"phoneNumber\": \"12345678909\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/customers/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"customers",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"updatedName\",\r\n    \"lastName\": \"newLName\",\r\n    \"email\": \"newEmail@gmail.com\",\r\n    \"phoneNumber\": \"12345678909\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/customers/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"customers",
+										"1"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 13:43:57 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Error (validation error when update)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"updatedName\",\r\n    \"lastName\": \"newLName\",\r\n    \"email\": \"wrongEmail\",\r\n    \"phoneNumber\": \"12345678909\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/customers/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"customers",
+										"1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/problem+json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 13:44:35 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\n    \"title\": \"One or more validation errors occurred.\",\n    \"status\": 400,\n    \"traceId\": \"00-2bc7a5d5fd5ed16b5c6c783584f95d97-03dd06c2c5bf3bf5-00\",\n    \"errors\": {\n        \"Email\": [\n            \"The Email field is not a valid e-mail address.\"\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Patch",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/email\",\r\n        \"value\": \"emaill\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/firstName\",\r\n        \"value\": \"\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/customers/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"customers",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success partial update",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/firstName\",\r\n        \"value\": \"NewFirstName\"\r\n    }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/customers/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"customers",
+										"1"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 14:16:27 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Error patch",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/email\",\r\n        \"value\": \"emaill\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/firstName\",\r\n        \"value\": \"\"\r\n    }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/customers/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"customers",
+										"1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "109"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 14:25:41 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Email\": [\n        \"The Email field is not a valid e-mail address.\"\n    ],\n    \"FirstName\": [\n        \"The FirstName field is required.\"\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Restaurant",
+			"item": [
+				{
+					"name": "Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"restaurant\",\r\n  \"address\": \"abs street\",\r\n  \"phoneNumber\": \"059999999\",\r\n  \"openingHours\": \"Saturday-Thursday, 10:00AM-5:00PM\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/restaurants",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"restaurants"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"restaurant\",\r\n  \"address\": \"abs street\",\r\n  \"phoneNumber\": \"059999999\",\r\n  \"openingHours\": \"Saturday-Thursday, 10:00AM-5:00PM\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/restaurants",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"restaurants"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "131"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 16:46:45 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Location",
+									"value": "https://localhost:7208/api/restaurants/1001"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1001,\n    \"name\": \"restaurant\",\n    \"address\": \"abs street\",\n    \"phoneNumber\": \"059999999\",\n    \"openingHours\": \"Saturday-Thursday, 10:00AM-5:00PM\"\n}"
+						},
+						{
+							"name": "Error (validation errors)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"address\": \"abs street\",\r\n  \"phoneNumber\": \"\",\r\n  \"openingHours\": \"Saturday-Thursday, 10:00AM-5:00PM\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/restaurants",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"restaurants"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "347"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/problem+json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 16:47:34 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": {\n        \"Name\": [\n            \"The Name field is required.\"\n        ],\n        \"PhoneNumber\": [\n            \"The PhoneNumber field is required.\",\n            \"The PhoneNumber field is not a valid phone number.\"\n        ]\n    },\n    \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\n    \"title\": \"One or more validation errors occurred.\",\n    \"status\": 400,\n    \"traceId\": \"00-768be9dd0fe0935e8bf97f7971a80ac3-653b45a9bb66f243-00\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/restaurants/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"restaurants",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/restaurants/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"restaurants",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "149"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 15:52:10 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"BURGER KING\",\n    \"address\": \"19 Old Fulton St., Brooklyn\",\n    \"phoneNumber\": \"+17185551234\",\n    \"openingHours\": \"Saturday-Thursday: 10:00AM-5:00AM\"\n}"
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/restaurants/1000",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"restaurants",
+										"1000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "106"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 15:52:48 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"Restaurant.NotFound\",\n    \"statusCode\": 404,\n    \"description\": \"Restaurant with id 1000 not found\",\n    \"type\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/restaurants/1/details",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"restaurants",
+								"1",
+								"details"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/restaurants/1/details",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"restaurants",
+										"1",
+										"details"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "1239"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 06:37:01 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"BURGER KING\",\n    \"address\": \"19 Old Fulton St., Brooklyn\",\n    \"phoneNumber\": \"+17185551234\",\n    \"openingHours\": \"Saturday-Thursday: 10:00AM-5:00AM\",\n    \"numberOfTables\": 0,\n    \"numberOfEmployees\": 0,\n    \"numberOfMenuItems\": 4,\n    \"numberOfReservations\": 4,\n    \"tables\": [],\n    \"reservations\": [\n        {\n            \"id\": 1,\n            \"date\": \"2023-12-30T16:49:29.4250636\",\n            \"partySize\": 2,\n            \"restaurantId\": 1,\n            \"customerId\": 5,\n            \"tableId\": 1\n        },\n        {\n            \"id\": 5,\n            \"date\": \"2023-12-30T16:49:29.4250736\",\n            \"partySize\": 10,\n            \"restaurantId\": 1,\n            \"customerId\": 4,\n            \"tableId\": 5\n        },\n        {\n            \"id\": 1002,\n            \"date\": \"2024-02-15T08:30:00\",\n            \"partySize\": 2,\n            \"restaurantId\": 1,\n            \"customerId\": 5,\n            \"tableId\": 1\n        },\n        {\n            \"id\": 1004,\n            \"date\": \"2024-02-15T08:30:00\",\n            \"partySize\": 2,\n            \"restaurantId\": 1,\n            \"customerId\": 5,\n            \"tableId\": 1\n        }\n    ],\n    \"employees\": [],\n    \"menuItems\": [\n        {\n            \"id\": 1,\n            \"name\": \"Classic Burger\",\n            \"description\": \"Juicy beef patty with lettuce, tomato, and cheese\",\n            \"price\": 8.99,\n            \"restaurantId\": 1\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Crispy Chicken Sandwich\",\n            \"description\": \"Golden fried chicken with mayo and pickles\",\n            \"price\": 9.99,\n            \"restaurantId\": 1\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Vegetarian Wrap\",\n            \"description\": \"Grilled veggies wrapped in a tortilla with hummus\",\n            \"price\": 7.99,\n            \"restaurantId\": 1\n        },\n        {\n            \"id\": 1002,\n            \"name\": \"update- Classic Burger\",\n            \"description\": \"update-Juicy beef patty with lettuce, tomato, and cheese\",\n            \"price\": 8.99,\n            \"restaurantId\": 1\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/restaurants/1000/details",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"restaurants",
+										"1000",
+										"details"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "106"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 06:37:26 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"Restaurant.NotFound\",\n    \"statusCode\": 404,\n    \"description\": \"Restaurant with id 1000 not found\",\n    \"type\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Restaurants",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/restaurants?pageNumber=1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"restaurants"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/restaurants?pageNumber=1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"restaurants"
+									],
+									"query": [
+										{
+											"key": "pageNumber",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "888"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 15:44:41 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "X-Pagination",
+									"value": "{\"PageNumber\":1,\"PageSize\":10,\"TotalPages\":1,\"TotalRecords\":6}"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"BURGER KING\",\n        \"address\": \"19 Old Fulton St., Brooklyn\",\n        \"phoneNumber\": \"+17185551234\",\n        \"openingHours\": \"Saturday-Thursday: 10:00AM-5:00AM\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"ABC SUSHI\",\n        \"address\": \"123 Main St., Cityville\",\n        \"phoneNumber\": \"+14304461234\",\n        \"openingHours\": \"Monday-Sunday: 11:00AM-8:00PM\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"CHINESE KITCHEN\",\n        \"address\": \"456 Elm St., Townsville\",\n        \"phoneNumber\": \"+14304462345\",\n        \"openingHours\": \"Tuesday-Saturday: 12:30PM-9:00PM\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"DASH SEAFOOD & CHICKEN\",\n        \"address\": \"789 Oak St., Villageton\",\n        \"phoneNumber\": \"+14304463456\",\n        \"openingHours\": \"Wednesday-Monday: 3:00PM-10:30PM\"\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Patsy's Pizza\",\n        \"address\": \"321 Maple St., Hamletville\",\n        \"phoneNumber\": \"+14304464567\",\n        \"openingHours\": \"Thursday-Tuesday: 4:00PM-11:00PM\"\n    },\n    {\n        \"id\": 6,\n        \"name\": \"Sample Restaurant\",\n        \"address\": \"123 main street\",\n        \"phoneNumber\": \"9876543210\",\n        \"openingHours\": \"Saturday-Thursday: 10:00AM-5:00AM\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/customers/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"customers",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/restaurants/1001",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"restaurants",
+										"1001"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 16:54:33 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/restaurants/10000",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"restaurants",
+										"10000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "107"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 16:55:10 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"Restaurant.NotFound\",\n    \"statusCode\": 404,\n    \"description\": \"Restaurant with id 10000 not found\",\n    \"type\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "Put",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"updatedName\",\r\n    \"lastName\": \"newLName\",\r\n    \"email\": \"wrongEmail\",\r\n    \"phoneNumber\": \"12345678909\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/customers/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"customers",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"restaurant\",\r\n    \"address\": \"abs street\",\r\n    \"phoneNumber\": \"059999999\",\r\n    \"openingHours\": \"Saturday-Thursday, 10:00AM-5:00PM\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/restaurants/100000",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"restaurants",
+										"100000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "108"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 17:00:50 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"Restaurant.NotFound\",\n    \"statusCode\": 404,\n    \"description\": \"Restaurant with id 100000 not found\",\n    \"type\": 2\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"restaurant-updated\",\r\n    \"address\": \"abs street\",\r\n    \"phoneNumber\": \"059999999\",\r\n    \"openingHours\": \"Saturday-Thursday, 10:00AM-5:00PM\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/restaurants/1002",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"restaurants",
+										"1002"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 17:01:18 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Error ( Model Validation)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"restaurant-updated\",\r\n    \"phoneNumber\": \"059999999\",\r\n    \"openingHours\": \"Saturday-Thursday, 10:00AM-5:00PM\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/restaurants/1002",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"restaurants",
+										"1002"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "247"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/problem+json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 17:01:41 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": {\n        \"Address\": [\n            \"The Address field is required.\"\n        ]\n    },\n    \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\n    \"title\": \"One or more validation errors occurred.\",\n    \"status\": 400,\n    \"traceId\": \"00-bdea9ae2a96d0753791b10ac4ebd09e0-72238019c3243dbd-00\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Employee",
+			"item": [
+				{
+					"name": "Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"restaurant\",\r\n  \"address\": \"abs street\",\r\n  \"phoneNumber\": \"059999999\",\r\n  \"openingHours\": \"Saturday-Thursday, 10:00AM-5:00PM\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/employees",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"employees"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Error(Foreign key exception)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"firstName\": \"try\",\r\n  \"lastName\": \"try\",\r\n  \"position\": 1,\r\n  \"restaurantId\": 100000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/employees",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"employees"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 21:35:46 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\"Code\":\"Foreign Key constraints violation\",\"StatusCode\":400,\"Description\":\"The operation failed due to a foreign key constraint violation\",\"Type\":1}"
+						},
+						{
+							"name": "Error(Model validation)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"firstName\": \"try\",\r\n  \"position\": 1,\r\n  \"restaurantId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/employees",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"employees"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "249"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/problem+json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 21:36:31 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": {\n        \"LastName\": [\n            \"The LastName field is required.\"\n        ]\n    },\n    \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\n    \"title\": \"One or more validation errors occurred.\",\n    \"status\": 400,\n    \"traceId\": \"00-429d5c77e457082f9cdddf7c1169ed3d-24ed93ce8fff81c9-00\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"firstName\": \"try\",\r\n  \"lastName\": \"try\",\r\n  \"position\": 1,\r\n  \"restaurantId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/employees",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"employees"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "76"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 21:36:50 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Location",
+									"value": "https://localhost:7208/api/employees/1003"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1003,\n    \"firstName\": \"try\",\n    \"lastName\": \"try\",\n    \"position\": 1,\n    \"restaurantId\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "Get",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/employees/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"employees",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/employees/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"employees",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 21:00:52 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"position\": 1,\n    \"restaurantId\": 1\n}"
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/employees/1000",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"employees",
+										"1000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "103"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 21:01:42 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"Employees.NotFound\",\n    \"statusCode\": 404,\n    \"description\": \"Employee with id 1000 not found\",\n    \"type\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Employees",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/restaurants?pageNumber=1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"restaurants"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/employees?pageNumber=1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"employees"
+									],
+									"query": [
+										{
+											"key": "pageNumber",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "794"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 20:49:50 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "X-Pagination",
+									"value": "{\"PageNumber\":1,\"PageSize\":10,\"TotalPages\":2,\"TotalRecords\":19}"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"position\": 1,\n        \"restaurantId\": 1\n    },\n    {\n        \"id\": 2,\n        \"firstName\": \"Alice\",\n        \"lastName\": \"Smith\",\n        \"position\": 3,\n        \"restaurantId\": 1\n    },\n    {\n        \"id\": 3,\n        \"firstName\": \"Bob\",\n        \"lastName\": \"Johnson\",\n        \"position\": 2,\n        \"restaurantId\": 1\n    },\n    {\n        \"id\": 4,\n        \"firstName\": \"Emily\",\n        \"lastName\": \"Williams\",\n        \"position\": 4,\n        \"restaurantId\": 1\n    },\n    {\n        \"id\": 5,\n        \"firstName\": \"Sophia\",\n        \"lastName\": \"Jones\",\n        \"position\": 1,\n        \"restaurantId\": 2\n    },\n    {\n        \"id\": 6,\n        \"firstName\": \"Daniel\",\n        \"lastName\": \"Miller\",\n        \"position\": 3,\n        \"restaurantId\": 2\n    },\n    {\n        \"id\": 7,\n        \"firstName\": \"Olivia\",\n        \"lastName\": \"Davis\",\n        \"position\": 3,\n        \"restaurantId\": 2\n    },\n    {\n        \"id\": 8,\n        \"firstName\": \"Bella\",\n        \"lastName\": \"Hamilton\",\n        \"position\": 2,\n        \"restaurantId\": 2\n    },\n    {\n        \"id\": 9,\n        \"firstName\": \"Emma\",\n        \"lastName\": \"Rodriguez\",\n        \"position\": 1,\n        \"restaurantId\": 3\n    },\n    {\n        \"id\": 10,\n        \"firstName\": \"Michael\",\n        \"lastName\": \"Brown\",\n        \"position\": 3,\n        \"restaurantId\": 3\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/employees/10000",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"employees",
+								"10000"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/employees/1003",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"employees",
+										"1003"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 21:40:40 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/employees/10000",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"employees",
+										"10000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "104"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 21:42:02 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"Employees.NotFound\",\n    \"statusCode\": 404,\n    \"description\": \"Employee with id 10000 not found\",\n    \"type\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "Put",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"Doe\",\r\n    \"position\": 2,\r\n    \"restaurantId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/employees/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"employees",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"Doe\",\r\n    \"position\": 2,\r\n    \"restaurantId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/employees/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"employees",
+										"1"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 21:46:18 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Error(Model validation)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"John\",\r\n    \"restaurantId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/employees/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"employees",
+										"1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "249"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/problem+json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 21:47:15 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": {\n        \"LastName\": [\n            \"The LastName field is required.\"\n        ]\n    },\n    \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\n    \"title\": \"One or more validation errors occurred.\",\n    \"status\": 400,\n    \"traceId\": \"00-fc18a5dfb51a30a4a2be0355fd525ca2-f9b7ca1b32c817f3-00\"\n}"
+						},
+						{
+							"name": "Error(Foreign key exception)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"Doe\",\r\n    \"position\": 2,\r\n    \"restaurantId\": 10000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/employees/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"employees",
+										"1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 21:47:53 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\"Code\":\"Foreign Key constraints violation\",\"StatusCode\":400,\"Description\":\"The operation failed due to a foreign key constraint violation\",\"Type\":1}"
+						}
+					]
+				},
+				{
+					"name": "List Managers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/employees/managers",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"employees",
+								"managers"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/employees/managers",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"employees",
+										"managers"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "322"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 22:09:15 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "X-Pagination",
+									"value": "{\"PageNumber\":1,\"PageSize\":10,\"TotalPages\":1,\"TotalRecords\":4}"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 5,\n        \"firstName\": \"Sophia\",\n        \"lastName\": \"Jones\",\n        \"position\": 1,\n        \"restaurantId\": 2\n    },\n    {\n        \"id\": 9,\n        \"firstName\": \"Emma\",\n        \"lastName\": \"Rodriguez\",\n        \"position\": 1,\n        \"restaurantId\": 3\n    },\n    {\n        \"id\": 12,\n        \"firstName\": \"Sophie\",\n        \"lastName\": \"Taylor\",\n        \"position\": 1,\n        \"restaurantId\": 4\n    },\n    {\n        \"id\": 15,\n        \"firstName\": \"Oliver\",\n        \"lastName\": \"Smith\",\n        \"position\": 1,\n        \"restaurantId\": 5\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Calculate avg order amount",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/employees/2/average-order-amount",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"employees",
+								"2",
+								"average-order-amount"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/employees/2/average-order-amount",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"employees",
+										"2",
+										"average-order-amount"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 22:27:22 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"averageOrderAmount\": 35.96\n}"
+						},
+						{
+							"name": "Error(not found employee)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/employees/1000/average-order-amount",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"employees",
+										"1000",
+										"average-order-amount"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "103"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 22:27:50 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"Employees.NotFound\",\n    \"statusCode\": 404,\n    \"description\": \"Employee with id 1000 not found\",\n    \"type\": 2\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Table",
+			"item": [
+				{
+					"name": "Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"capacity\": 30,\r\n    \"restaurantId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/tables",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"tables"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"capacity\": 30,\r\n    \"restaurantId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/tables",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"tables"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 22:53:33 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Location",
+									"value": "https://localhost:7208/api/tables/1001"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1001,\n    \"capacity\": 30,\n    \"restaurantId\": 2\n}"
+						},
+						{
+							"name": "Error(Foreign key exception)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"capacity\": 30,\r\n    \"restaurantId\": 200\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/tables",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"tables"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 22:54:28 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\"Code\":\"Foreign Key constraints violation\",\"StatusCode\":400,\"Description\":\"The operation failed due to a foreign key constraint violation\",\"Type\":1}"
+						}
+					]
+				},
+				{
+					"name": "Get",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/tables/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"tables",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/tables/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"tables",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 22:51:01 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"capacity\": 2,\n    \"restaurantId\": 1\n}"
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/tables/10000",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"tables",
+										"10000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "100"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 22:51:19 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"Table.NotFound\",\n    \"statusCode\": 404,\n    \"description\": \"Table with id 10000 is not found\",\n    \"type\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Tables",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/tables?pageNumber=1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"tables"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/tables?pageNumber=1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"tables"
+									],
+									"query": [
+										{
+											"key": "pageNumber",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "393"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 22:48:14 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "X-Pagination",
+									"value": "{\"PageNumber\":1,\"PageSize\":10,\"TotalPages\":3,\"TotalRecords\":29}"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"capacity\": 2,\n        \"restaurantId\": 1\n    },\n    {\n        \"id\": 2,\n        \"capacity\": 4,\n        \"restaurantId\": 1\n    },\n    {\n        \"id\": 3,\n        \"capacity\": 6,\n        \"restaurantId\": 1\n    },\n    {\n        \"id\": 4,\n        \"capacity\": 8,\n        \"restaurantId\": 1\n    },\n    {\n        \"id\": 5,\n        \"capacity\": 10,\n        \"restaurantId\": 1\n    },\n    {\n        \"id\": 6,\n        \"capacity\": 2,\n        \"restaurantId\": 2\n    },\n    {\n        \"id\": 7,\n        \"capacity\": 4,\n        \"restaurantId\": 2\n    },\n    {\n        \"id\": 8,\n        \"capacity\": 4,\n        \"restaurantId\": 2\n    },\n    {\n        \"id\": 9,\n        \"capacity\": 4,\n        \"restaurantId\": 2\n    },\n    {\n        \"id\": 10,\n        \"capacity\": 8,\n        \"restaurantId\": 2\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/tables/10000",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"tables",
+								"10000"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/tables/1001",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"tables",
+										"1001"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 22:55:10 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/tables/10000",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"tables",
+										"10000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "100"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 22:55:41 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"Table.NotFound\",\n    \"statusCode\": 404,\n    \"description\": \"Table with id 10000 is not found\",\n    \"type\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "Put",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"capacity\": 40,\r\n    \"restaurantId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/tables/7",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"tables",
+								"7"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"capacity\": 2,\r\n    \"restaurantId\": 100\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/tables/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"tables",
+										"1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 22:57:15 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\"Code\":\"Foreign Key constraints violation\",\"StatusCode\":400,\"Description\":\"The operation failed due to a foreign key constraint violation\",\"Type\":1}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"capacity\": 40,\r\n    \"restaurantId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/tables/7",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"tables",
+										"7"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 22:58:30 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Menu Item",
+			"item": [
+				{
+					"name": "Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"try- Classic Burger\",\r\n    \"description\": \"try- Juicy beef patty with lettuce, tomato, and cheese\",\r\n    \"price\": 10.5,\r\n    \"restaurantId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/menuItems",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"menuItems"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"try- Classic Burger\",\r\n    \"description\": \"try- Juicy beef patty with lettuce, tomato, and cheese\",\r\n    \"price\": 10.5,\r\n    \"restaurantId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/menuItems",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"menuItems"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "141"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 04:24:28 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Location",
+									"value": "https://localhost:7208/api/menuItems/1001"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1001,\n    \"name\": \"try- Classic Burger\",\n    \"description\": \"try- Juicy beef patty with lettuce, tomato, and cheese\",\n    \"price\": 10.5,\n    \"restaurantId\": 2\n}"
+						},
+						{
+							"name": "Error(Model validation)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\": \"try- Juicy beef patty with lettuce, tomato, and cheese\",\r\n    \"price\": 10.5,\r\n    \"restaurantId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/menuItems",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"menuItems"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "241"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/problem+json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 04:24:53 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": {\n        \"Name\": [\n            \"The Name field is required.\"\n        ]\n    },\n    \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\n    \"title\": \"One or more validation errors occurred.\",\n    \"status\": 400,\n    \"traceId\": \"00-08d35c189113d30ac914a2753af2640b-efe9c86634e9c045-00\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/menuItems/1002",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"menuItems",
+								"1002"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/menuItems/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"menuItems",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "128"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 04:20:42 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"Classic Burger\",\n    \"description\": \"Juicy beef patty with lettuce, tomato, and cheese\",\n    \"price\": 8.99,\n    \"restaurantId\": 1\n}"
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/menuItems/10000",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"menuItems",
+										"10000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "104"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 04:22:18 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"MenuItems.NotFound\",\n    \"statusCode\": 404,\n    \"description\": \"MenuItem with id 10000 not found\",\n    \"type\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Menu Items",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/menuItems?pageNumber=2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"menuItems"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/menuItems?pageNumber=2",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"menuItems"
+									],
+									"query": [
+										{
+											"key": "pageNumber",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "1162"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 04:20:15 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "X-Pagination",
+									"value": "{\"PageNumber\":2,\"PageSize\":10,\"TotalPages\":3,\"TotalRecords\":22}"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 11,\n        \"name\": \"Chicken Wings\",\n        \"description\": \"Spicy buffalo chicken wings with ranch dressing\",\n        \"price\": 9.99,\n        \"restaurantId\": 4\n    },\n    {\n        \"id\": 12,\n        \"name\": \"Grilled Salmon\",\n        \"description\": \"Fresh salmon fillet grilled to perfection\",\n        \"price\": 14.99,\n        \"restaurantId\": 4\n    },\n    {\n        \"id\": 13,\n        \"name\": \"Margherita Pizza\",\n        \"description\": \"Classic pizza with tomato, mozzarella, and basil\",\n        \"price\": 12.99,\n        \"restaurantId\": 5\n    },\n    {\n        \"id\": 14,\n        \"name\": \"Pasta Carbonara\",\n        \"description\": \"Creamy pasta with bacon, eggs, and parmesan cheese\",\n        \"price\": 15.99,\n        \"restaurantId\": 5\n    },\n    {\n        \"id\": 15,\n        \"name\": \"Tiramisu\",\n        \"description\": \"Italian dessert with layers of coffee-soaked ladyfingers and mascarpone\",\n        \"price\": 7.99,\n        \"restaurantId\": 5\n    },\n    {\n        \"id\": 16,\n        \"name\": \"Test\",\n        \"description\": \"sample menu item for testing\",\n        \"price\": 20,\n        \"restaurantId\": 5\n    },\n    {\n        \"id\": 17,\n        \"name\": \"Test\",\n        \"description\": \"sample menu item for testing\",\n        \"price\": 20,\n        \"restaurantId\": 5\n    },\n    {\n        \"id\": 18,\n        \"name\": \"Test\",\n        \"description\": \"sample menu item for testing\",\n        \"price\": 20,\n        \"restaurantId\": 5\n    },\n    {\n        \"id\": 19,\n        \"name\": \"Test\",\n        \"description\": \"sample menu item for testing\",\n        \"price\": 20,\n        \"restaurantId\": 5\n    },\n    {\n        \"id\": 20,\n        \"name\": \"Test\",\n        \"description\": \"sample menu item for testing\",\n        \"price\": 20,\n        \"restaurantId\": 5\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/menuItems/1000",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"menuItems",
+								"1000"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/menuItems/1001",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"menuItems",
+										"1001"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 04:25:48 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/menuItems/10000",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"menuItems",
+										"10000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "104"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 04:26:04 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"MenuItems.NotFound\",\n    \"statusCode\": 404,\n    \"description\": \"MenuItem with id 10000 not found\",\n    \"type\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "Put",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"update- Classic Burger\",\r\n    \"description\": \"update-Juicy beef patty with lettuce, tomato, and cheese\",\r\n    \"price\": 8.99,\r\n    \"restaurantId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/menuItems/1002",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"menuItems",
+								"1002"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"update- Classic Burger\",\r\n    \"description\": \"update-Juicy beef patty with lettuce, tomato, and cheese\",\r\n    \"price\": 8.99,\r\n    \"restaurantId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/menuItems/1002",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"menuItems",
+										"1002"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 04:28:53 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Error(Foreign key exception)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"update- Classic Burger\",\r\n    \"description\": \"update-Juicy beef patty with lettuce, tomato, and cheese\",\r\n    \"price\": 8.99\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/menuItems/1002",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"menuItems",
+										"1002"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 04:29:41 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\"Code\":\"Foreign Key constraints violation\",\"StatusCode\":400,\"Description\":\"The operation failed due to a foreign key constraint violation\",\"Type\":1}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Order Item",
+			"item": [
+				{
+					"name": "Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantity\": 10,\r\n    \"orderId\": 1,\r\n    \"menuItemId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/orderItems",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"orderItems"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"quantity\": 10,\r\n    \"orderId\": 1,\r\n    \"menuItemId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/orderItems",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"orderItems"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 05:08:25 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Location",
+									"value": "https://localhost:7208/api/orderItems/1001"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1001,\n    \"quantity\": 10,\n    \"orderId\": 1,\n    \"menuItemId\": 1\n}"
+						},
+						{
+							"name": "Error(Model Validation)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"quantity\": -10,\r\n    \"orderId\": 1,\r\n    \"menuItemId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/orderItems",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"orderItems"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "261"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/problem+json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 05:08:54 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": {\n        \"Quantity\": [\n            \"Quantity must be greater than or equal to 1\"\n        ]\n    },\n    \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\n    \"title\": \"One or more validation errors occurred.\",\n    \"status\": 400,\n    \"traceId\": \"00-e4b5d6b835b948f6dc816174cd0481bb-30095d8f336e2940-00\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/orderItems/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"orderItems",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/orderItems/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"orderItems",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 05:06:52 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"quantity\": 2,\n    \"orderId\": 1,\n    \"menuItemId\": 1\n}"
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/orderItems/1000",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"orderItems",
+										"1000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "106"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 05:07:34 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"OrderItems.NotFound\",\n    \"statusCode\": 404,\n    \"description\": \"Order Item with id 1000 not found\",\n    \"type\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Order Items",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/orderItems?pageNumber=1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"orderItems"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/orderItems?pageNumber=1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"orderItems"
+									],
+									"query": [
+										{
+											"key": "pageNumber",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "495"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 05:06:24 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "X-Pagination",
+									"value": "{\"PageNumber\":1,\"PageSize\":10,\"TotalPages\":4,\"TotalRecords\":32}"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"quantity\": 2,\n        \"orderId\": 1,\n        \"menuItemId\": 1\n    },\n    {\n        \"id\": 2,\n        \"quantity\": 2,\n        \"orderId\": 1,\n        \"menuItemId\": 2\n    },\n    {\n        \"id\": 3,\n        \"quantity\": 1,\n        \"orderId\": 2,\n        \"menuItemId\": 4\n    },\n    {\n        \"id\": 4,\n        \"quantity\": 1,\n        \"orderId\": 2,\n        \"menuItemId\": 5\n    },\n    {\n        \"id\": 5,\n        \"quantity\": 1,\n        \"orderId\": 2,\n        \"menuItemId\": 6\n    },\n    {\n        \"id\": 6,\n        \"quantity\": 3,\n        \"orderId\": 3,\n        \"menuItemId\": 7\n    },\n    {\n        \"id\": 7,\n        \"quantity\": 3,\n        \"orderId\": 3,\n        \"menuItemId\": 9\n    },\n    {\n        \"id\": 8,\n        \"quantity\": 2,\n        \"orderId\": 4,\n        \"menuItemId\": 10\n    },\n    {\n        \"id\": 9,\n        \"quantity\": 2,\n        \"orderId\": 4,\n        \"menuItemId\": 11\n    },\n    {\n        \"id\": 10,\n        \"quantity\": 2,\n        \"orderId\": 4,\n        \"menuItemId\": 12\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/orderItems/10000",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"orderItems",
+								"10000"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/orderItems/1001",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"orderItems",
+										"1001"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 05:10:05 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/orderItems/10000",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"orderItems",
+										"10000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "107"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 05:10:20 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"OrderItems.NotFound\",\n    \"statusCode\": 404,\n    \"description\": \"Order Item with id 10000 not found\",\n    \"type\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "Put",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantity\": 30,\r\n    \"orderId\": 1,\r\n    \"menuItemId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/orderItems/10000",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"orderItems",
+								"10000"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"quantity\": 30,\r\n    \"orderId\": 1,\r\n    \"menuItemId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/orderItems/1002",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"orderItems",
+										"1002"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 05:11:44 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"quantity\": 30,\r\n    \"orderId\": 1,\r\n    \"menuItemId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/orderItems/10000",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"orderItems",
+										"10000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "107"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 05:12:29 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"OrderItems.NotFound\",\n    \"statusCode\": 404,\n    \"description\": \"Order Item with id 10000 not found\",\n    \"type\": 2\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"2024-2-10T08:30:00\",\r\n    \"totalAmount\": 50,\r\n    \"employeeId\": 2,\r\n    \"reservationId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/orders",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date\": \"2024-2-10T08:30:00\",\r\n    \"totalAmount\": 50,\r\n    \"employeeId\": 2,\r\n    \"reservationId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/orders",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"orders"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "92"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 05:17:29 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Location",
+									"value": "https://localhost:7208/api/orders/1001"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1001,\n    \"date\": \"2024-02-10T08:30:00\",\n    \"totalAmount\": 50,\n    \"employeeId\": 2,\n    \"reservationId\": 1\n}"
+						},
+						{
+							"name": "Error(Model validation)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date\": \"\",\r\n    \"totalAmount\": 50,\r\n    \"employeeId\": 2,\r\n    \"reservationId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/orders",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"orders"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "351"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/problem+json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 05:17:59 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": {\n        \"date\": [\n            \"Error converting value {null} to type 'System.DateTime'. Path 'date', line 2, position 14.\"\n        ],\n        \"orderDto\": [\n            \"The orderDto field is required.\"\n        ]\n    },\n    \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\n    \"title\": \"One or more validation errors occurred.\",\n    \"status\": 400,\n    \"traceId\": \"00-7fed8cbdb8dffad42f4b9457548cffa3-d4bd9a0c7d71612e-00\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/orders/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"orders",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/orders/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"orders",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "98"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 05:13:47 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"date\": \"2023-12-30T16:49:29.4251191\",\n    \"totalAmount\": 37.96,\n    \"employeeId\": 2,\n    \"reservationId\": 1\n}"
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/orders/1000",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"orders",
+										"1000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "97"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 05:14:22 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"Orders.NotFound\",\n    \"statusCode\": 404,\n    \"description\": \"Order with id 1000 not found\",\n    \"type\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Orders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/orders?pageNumber=2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/orders?pageNumber=2",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"orders"
+									],
+									"query": [
+										{
+											"key": "pageNumber",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "407"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 05:13:15 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "X-Pagination",
+									"value": "{\"PageNumber\":2,\"PageSize\":10,\"TotalPages\":2,\"TotalRecords\":14}"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 11,\n        \"date\": \"2023-12-28T16:49:29.4251269\",\n        \"totalAmount\": 23.98,\n        \"employeeId\": 10,\n        \"reservationId\": 4\n    },\n    {\n        \"id\": 12,\n        \"date\": \"2023-12-28T16:49:29.4251275\",\n        \"totalAmount\": 13.99,\n        \"employeeId\": 10,\n        \"reservationId\": 4\n    },\n    {\n        \"id\": 13,\n        \"date\": \"2023-12-29T16:49:29.4251282\",\n        \"totalAmount\": 57.96,\n        \"employeeId\": 16,\n        \"reservationId\": 11\n    },\n    {\n        \"id\": 14,\n        \"date\": \"2023-12-29T16:49:29.4251289\",\n        \"totalAmount\": 15.99,\n        \"employeeId\": 16,\n        \"reservationId\": 11\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/orders/10000",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"orders",
+								"10000"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/orders/1001",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"orders",
+										"1001"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 05:18:56 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/orders/10000",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"orders",
+										"10000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "98"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 05:19:11 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"Orders.NotFound\",\n    \"statusCode\": 404,\n    \"description\": \"Order with id 10000 not found\",\n    \"type\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "Put",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"2024-2-10T08:30:00\",\r\n    \"totalAmount\": 60,\r\n    \"employeeId\": 2,\r\n    \"reservationId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/orders/1002",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"orders",
+								"1002"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date\": \"2024-2-10T08:30:00\",\r\n    \"totalAmount\": 60,\r\n    \"employeeId\": 2,\r\n    \"reservationId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/orders/1002",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"orders",
+										"1002"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 05:20:24 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Error(Foreign key exception)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date\": \"2024-2-10T08:30:00\",\r\n    \"totalAmount\": 60,\r\n    \"employeeId\": 2,\r\n    \"reservationId\": 100000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/orders/1002",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"orders",
+										"1002"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 05:21:08 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\"Code\":\"Foreign Key constraints violation\",\"StatusCode\":400,\"Description\":\"The operation failed due to a foreign key constraint violation\",\"Type\":1}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Reservation",
+			"item": [
+				{
+					"name": "Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"2024-2-15T08:30:00\",\r\n    \"partySize\": 2,\r\n    \"restaurantId\": 1,\r\n    \"customerId\": 5,\r\n    \"tableId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/reservations",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"reservations"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date\": \"2024-2-15T08:30:00\",\r\n    \"partySize\": 2,\r\n    \"restaurantId\": 1,\r\n    \"customerId\": 5,\r\n    \"tableId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/reservations",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"reservations"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "98"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 06:03:14 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Location",
+									"value": "https://localhost:7208/api/reservations/1002"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1002,\n    \"date\": \"2024-02-15T08:30:00\",\n    \"partySize\": 2,\n    \"restaurantId\": 1,\n    \"customerId\": 5,\n    \"tableId\": 1\n}"
+						},
+						{
+							"name": "Error(Not matching table,Restaurant)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date\": \"2024-2-15T08:30:00\",\r\n    \"partySize\": 2,\r\n    \"restaurantId\": 1,\r\n    \"customerId\": 5,\r\n    \"tableId\": 10\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/reservations",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"reservations"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "157"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 06:04:03 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"Reservation.NotValid\",\n    \"statusCode\": 400,\n    \"description\": \" Reservation can't add, couldn't find table id = 10 related to restaurant with id 1\",\n    \"type\": 1\n}"
+						},
+						{
+							"name": "Error(Model validation)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date\": \"\",\r\n    \"partySize\": 2,\r\n    \"restaurantId\": 1,\r\n    \"customerId\": 5,\r\n    \"tableId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/reservations",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"reservations"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "363"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/problem+json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 06:04:52 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": {\n        \"date\": [\n            \"Error converting value {null} to type 'System.DateTime'. Path 'date', line 2, position 14.\"\n        ],\n        \"reservationDto\": [\n            \"The reservationDto field is required.\"\n        ]\n    },\n    \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\n    \"title\": \"One or more validation errors occurred.\",\n    \"status\": 400,\n    \"traceId\": \"00-2c3bd5e8a4f99fd8480f0f3c47a023a7-e04c863e17ae0b8c-00\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/reservations/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"reservations",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/reservations/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"reservations",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "103"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 06:00:47 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"date\": \"2023-12-30T16:49:29.4250636\",\n    \"partySize\": 2,\n    \"restaurantId\": 1,\n    \"customerId\": 5,\n    \"tableId\": 1\n}"
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/reservations/1000",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"reservations",
+										"1000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "109"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 06:01:05 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"Reservation.NotFound\",\n    \"statusCode\": 404,\n    \"description\": \" Reservation with id 1000 not found\",\n    \"type\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "Get reservation by customer id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/reservations/customer/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"reservations",
+								"customer",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/reservations/customer/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"reservations",
+										"customer",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "317"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 08:42:07 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 2,\n        \"date\": \"2023-12-31T16:49:29.4250715\",\n        \"partySize\": 4,\n        \"restaurantId\": 2,\n        \"customerId\": 1,\n        \"tableId\": 7\n    },\n    {\n        \"id\": 7,\n        \"date\": \"2023-12-30T16:49:29.425075\",\n        \"partySize\": 14,\n        \"restaurantId\": 3,\n        \"customerId\": 1,\n        \"tableId\": 13\n    },\n    {\n        \"id\": 10,\n        \"date\": \"2023-12-25T16:49:29.4250771\",\n        \"partySize\": 20,\n        \"restaurantId\": 4,\n        \"customerId\": 1,\n        \"tableId\": 20\n    }\n]"
+						},
+						{
+							"name": "No reservations found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/reservations/customer/10000",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"reservations",
+										"customer",
+										"10000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "130"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 08:45:58 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"Reservation.NotFound\",\n    \"statusCode\": 404,\n    \"description\": \"  couldn't find reservation for customer with id = 10000\",\n    \"type\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "Get reservation orders and menu items",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/reservations/4/orders",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"reservations",
+								"4",
+								"orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/reservations/4/orders",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"reservations",
+										"4",
+										"orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "847"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 09:42:39 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 3,\n        \"totalAmount\": 68.94,\n        \"orderItems\": [\n            {\n                \"id\": 6,\n                \"quantity\": 3,\n                \"menuItemId\": 7,\n                \"menuItem\": {\n                    \"name\": \"Sweet and Sour Chicken\",\n                    \"description\": \"Battered and fried chicken with sweet and sour sauce\",\n                    \"price\": 11.99,\n                    \"restaurantId\": 3\n                }\n            },\n            {\n                \"id\": 7,\n                \"quantity\": 3,\n                \"menuItemId\": 9,\n                \"menuItem\": {\n                    \"name\": \"Shrimp Fried Rice\",\n                    \"description\": \"Fried rice with shrimp, vegetables, and soy sauce\",\n                    \"price\": 10.99,\n                    \"restaurantId\": 3\n                }\n            }\n        ]\n    },\n    {\n        \"id\": 11,\n        \"totalAmount\": 23.98,\n        \"orderItems\": [\n            {\n                \"id\": 23,\n                \"quantity\": 2,\n                \"menuItemId\": 7,\n                \"menuItem\": {\n                    \"name\": \"Sweet and Sour Chicken\",\n                    \"description\": \"Battered and fried chicken with sweet and sour sauce\",\n                    \"price\": 11.99,\n                    \"restaurantId\": 3\n                }\n            }\n        ]\n    },\n    {\n        \"id\": 12,\n        \"totalAmount\": 13.99,\n        \"orderItems\": [\n            {\n                \"id\": 24,\n                \"quantity\": 1,\n                \"menuItemId\": 8,\n                \"menuItem\": {\n                    \"name\": \"Beef and Broccoli\",\n                    \"description\": \"Stir-fried beef with broccoli in a savory sauce\",\n                    \"price\": 13.99,\n                    \"restaurantId\": 3\n                }\n            }\n        ]\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get reservation ordered menu items",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/reservations/4/menu-items",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"reservations",
+								"4",
+								"menu-items"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/reservations/4/menu-items",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"reservations",
+										"4",
+										"menu-items"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "406"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 09:48:41 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 7,\n        \"name\": \"Sweet and Sour Chicken\",\n        \"description\": \"Battered and fried chicken with sweet and sour sauce\",\n        \"price\": 11.99,\n        \"restaurantId\": 3\n    },\n    {\n        \"id\": 8,\n        \"name\": \"Beef and Broccoli\",\n        \"description\": \"Stir-fried beef with broccoli in a savory sauce\",\n        \"price\": 13.99,\n        \"restaurantId\": 3\n    },\n    {\n        \"id\": 9,\n        \"name\": \"Shrimp Fried Rice\",\n        \"description\": \"Fried rice with shrimp, vegetables, and soy sauce\",\n        \"price\": 10.99,\n        \"restaurantId\": 3\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get Reservations",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/reservations?pageNumber=2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"reservations"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/reservations?pageNumber=2",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"reservations"
+									],
+									"query": [
+										{
+											"key": "pageNumber",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "107"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 06:00:09 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "X-Pagination",
+									"value": "{\"PageNumber\":2,\"PageSize\":10,\"TotalPages\":2,\"TotalRecords\":11}"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 11,\n        \"date\": \"2023-12-29T16:49:29.4250778\",\n        \"partySize\": 6,\n        \"restaurantId\": 5,\n        \"customerId\": 3,\n        \"tableId\": 22\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/reservations/10000",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"reservations",
+								"10000"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/reservations/1003",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"reservations",
+										"1003"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 06:05:47 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/reservations/10000",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"reservations",
+										"10000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "110"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 06:06:04 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"Reservation.NotFound\",\n    \"statusCode\": 404,\n    \"description\": \" Reservation with id 10000 not found\",\n    \"type\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "Put",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"2024-02-15T08:30:00\",\r\n    \"partySize\": 2,\r\n    \"restaurantId\": 1,\r\n    \"customerId\": 5,\r\n    \"tableId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/reservations/1004",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"reservations",
+								"1004"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date\": \"2024-02-16T08:30:00\",\r\n    \"partySize\": 2,\r\n    \"restaurantId\": 1,\r\n    \"customerId\": 5,\r\n    \"tableId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/reservations/1004",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"reservations",
+										"1004"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 06:08:18 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Error(Model validation)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date\": \"\",\r\n    \"partySize\": 2,\r\n    \"restaurantId\": 1,\r\n    \"customerId\": 5,\r\n    \"tableId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/reservations/1004",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"reservations",
+										"1004"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "357"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/problem+json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 06:08:57 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": {\n        \"date\": [\n            \"Error converting value {null} to type 'System.DateTime'. Path 'date', line 2, position 14.\"\n        ],\n        \"reservation\": [\n            \"The reservation field is required.\"\n        ]\n    },\n    \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\n    \"title\": \"One or more validation errors occurred.\",\n    \"status\": 400,\n    \"traceId\": \"00-40e662123c369284d17a747148e94835-3aa94ec89a8bad75-00\"\n}"
+						},
+						{
+							"name": "Error(Foreign Key exception)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date\": \"2024-02-16T08:30:00\",\r\n    \"partySize\": 2,\r\n    \"restaurantId\": 1,\r\n    \"customerId\": 7,\r\n    \"tableId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/reservations/1004",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"reservations",
+										"1004"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 06:09:23 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\"Code\":\"Foreign Key constraints violation\",\"StatusCode\":400,\"Description\":\"The operation failed due to a foreign key constraint violation\",\"Type\":1}"
+						},
+						{
+							"name": "Error(not matching table,restaurant)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date\": \"2024-02-16T08:30:00\",\r\n    \"partySize\": 2,\r\n    \"restaurantId\": 1,\r\n    \"customerId\": 5,\r\n    \"tableId\": 10\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/reservations/1004",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"reservations",
+										"1004"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "157"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 06:09:52 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"Reservation.NotValid\",\n    \"statusCode\": 400,\n    \"description\": \" Reservation can't add, couldn't find table id = 10 related to restaurant with id 1\",\n    \"type\": 1\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Authentication (Get token)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Key\" : \"11110000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:{{portNumber}}/api/authentication/authenticate",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "{{portNumber}}",
+							"path": [
+								"api",
+								"authentication",
+								"authenticate"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Key\" : \"11110000\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/authentication/authenticate",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"authentication",
+										"authenticate"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "277"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 12:04:03 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Token generated successfully.\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDc3Mzk0NDMsImV4cCI6MTcwNzc0MzA0MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MjEwIn0.WSx8zxWvz3UvG_wZnKyVungUzDbVNmscDyhUt-kjlHg\"\n}"
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Key\" : \"1111000\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:{{portNumber}}/api/authentication/authenticate",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "{{portNumber}}",
+									"path": [
+										"api",
+										"authentication",
+										"authenticate"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "162"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/problem+json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Feb 2024 12:04:26 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc7235#section-3.1\",\n    \"title\": \"Unauthorized\",\n    \"status\": 401,\n    \"traceId\": \"00-c1e7531e5655c38ca0ec4dbf8fe236a0-743fcad1884f9af7-00\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
