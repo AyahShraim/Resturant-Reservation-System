@@ -1,4 +1,8 @@
-﻿using RestaurantReservation.Db.Entities;
+﻿using RestaurantReservation.API.Models.Employees;
+using RestaurantReservation.API.Models.MenuItems;
+using RestaurantReservation.API.Models.Reservations;
+using RestaurantReservation.API.Models.Tables;
+using RestaurantReservation.Db.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace RestaurantReservation.API.Models.Restaurants
@@ -28,12 +32,12 @@ namespace RestaurantReservation.API.Models.Restaurants
 
         public int NumberOfReservations { get { return Reservations.Count; } }
        
-        public List<Table> Tables { get; set; } = new();
+        public List<TableWithoutDetailsDto> Tables { get; set; } = new();
         
-        public List<Reservation> Reservations { get; set; } = new();
+        public List<ReservationWithoutDetailsDto> Reservations { get; set; } = new();
         
-        public List<Employee> Employees { get; set; } = new();
+        public List<EmployeeWithoutDetailsDto> Employees { get; set; } = new();
         
-        public List<MenuItem> MenuItems { get; set; } = new();
+        public List<MenuItemWithoutDetailsDto> MenuItems { get; set; } = new();
     }
 }
