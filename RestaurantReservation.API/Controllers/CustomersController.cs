@@ -45,7 +45,7 @@ namespace RestaurantReservation.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CustomerCreationDto>> Create(CustomerCreationDto customerDto)
+        public async Task<ActionResult<CustomerDto>> Create(CustomerDto customerDto)
         {
             var existingCustomer = await _customerRepository.GetByEmailAsync(customerDto.Email);
             if (existingCustomer != null)
@@ -74,7 +74,7 @@ namespace RestaurantReservation.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Update(int id, CustomerCreationDto customer)
+        public async Task<ActionResult> Update(int id, CustomerDto customer)
         {
             var existingCustomer = await _customerRepository.GetByIdAsync(id);
             if (existingCustomer == null)
@@ -88,7 +88,7 @@ namespace RestaurantReservation.API.Controllers
         }
 
         [HttpPatch("{id}")]
-        public async Task<ActionResult> PartiallyUpdate(int id, JsonPatchDocument<CustomerCreationDto> patchDocument)
+        public async Task<ActionResult> PartiallyUpdate(int id, JsonPatchDocument<CustomerDto> patchDocument)
         {
             var existingCustomer = await _customerRepository.GetByIdAsync(id);
             if (existingCustomer == null)
@@ -97,7 +97,7 @@ namespace RestaurantReservation.API.Controllers
                 return NotFound(error);
             }
 
-            var customerToPatch = _mapper.Map<CustomerCreationDto>(existingCustomer);
+            var customerToPatch = _mapper.Map<CustomerDto>(existingCustomer);
             patchDocument.ApplyTo(customerToPatch, ModelState);
 
             TryValidateModel(customerToPatch);

@@ -2,7 +2,7 @@
 
 namespace RestaurantReservation.API.Models.Customers
 {
-    public class CustomerCreationDto
+    public class CustomerDto
     {
         [Required]
         public string FirstName { get; set; }

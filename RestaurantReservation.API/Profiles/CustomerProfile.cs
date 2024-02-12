@@ -9,8 +9,8 @@ namespace RestaurantReservation.API.Profiles
         public CustomerProfile() 
         {
             CreateMap<Customer, CustomersWithoutReservationsDto>();
-            CreateMap<CustomerCreationDto, Customer>();
-            CreateMap<Customer, CustomerCreationDto>();
+            CreateMap<CustomerDto, Customer>();
+            CreateMap<Customer, CustomerDto>();
         }
     }
 }
