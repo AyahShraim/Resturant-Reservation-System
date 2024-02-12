@@ -6,6 +6,5 @@ namespace RestaurantReservation.API.DomainErrors
     {
         public static Error NotFound(int id) => Error.NotFound(
            "Employees.NotFound", $"Employee with id {id} not found");
-
     }
 }

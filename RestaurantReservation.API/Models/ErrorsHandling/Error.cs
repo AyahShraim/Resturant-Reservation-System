@@ -1,4 +1,6 @@
-﻿namespace RestaurantReservation.API.Models.ErrorsHandling
+﻿using RestaurantReservation.API.Enum;
+
+namespace RestaurantReservation.API.Models.ErrorsHandling
 {
     public class Error
     {
@@ -38,13 +40,5 @@
             };
         }
 
-    }
-
-    public enum ErrorType
-    {
-        Failure = 0,
-        Validation = 1,
-        NotFound = 2,
-        Conflict = 3
     }
 }
