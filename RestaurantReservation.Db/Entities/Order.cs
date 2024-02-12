@@ -3,12 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RestaurantReservation.Db.Entities
 {
-    public class Order
+    public class Order : BaseEntity
     {
-        public int Id { get; set; }
 
         [DataType(DataType.Date)]
-        public required DateTime Date { get; set; }
+        public DateTime Date { get; set; }
 
         [Column(TypeName = "decimal(18, 2)")]
         public decimal TotalAmount { get; set; }

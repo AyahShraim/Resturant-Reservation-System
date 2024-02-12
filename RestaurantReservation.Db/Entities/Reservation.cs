@@ -2,12 +2,11 @@
 
 namespace RestaurantReservation.Db.Entities
 {
-    public class Reservation
+    public class Reservation : BaseEntity
     {
-        public int Id { get; set; }
 
         [DataType(DataType.Date)]
-        public required DateTime Date { get; set; }
+        public DateTime Date { get; set; }
 
         public int PartySize { get; set; }
 

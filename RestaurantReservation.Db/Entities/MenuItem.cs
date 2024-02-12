@@ -3,12 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RestaurantReservation.Db.Entities
 {
-    public class MenuItem
+    public class MenuItem : BaseEntity
     {
-        public int Id { get; set; }
 
         [MaxLength(100)]
-        public required string Name { get; set; }
+        public string Name { get; set; }
 
         [MaxLength(255)]
         public string? Description { get; set; }
