@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Asp.Versioning;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -11,8 +12,10 @@ using System.Text.Json;
 
 namespace RestaurantReservation.API.Controllers
 {
-    [Route("api/customers")]
+  
     [Authorize]
+    [Route("api/customers")]
+    [ApiVersion("1.0")]
     [ApiController]
     public class CustomersController : ControllerBase
     {

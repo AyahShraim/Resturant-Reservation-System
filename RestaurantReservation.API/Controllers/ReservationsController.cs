@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Asp.Versioning;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RestaurantReservation.API.DomainErrors;
@@ -13,6 +14,7 @@ namespace RestaurantReservation.API.Controllers
 {
     [Route("api/reservations")]
     [Authorize]
+    [ApiVersion("1.0")]
     [ApiController]
     public class ReservationsController : ControllerBase
     {

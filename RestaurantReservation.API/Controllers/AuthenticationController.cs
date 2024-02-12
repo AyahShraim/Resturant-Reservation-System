@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Asp.Versioning;
+using Microsoft.AspNetCore.Mvc;
 using RestaurantReservation.API.Authentication;
 using RestaurantReservation.API.Models.Authentication;
 
 namespace RestaurantReservation.API.Controllers
 {
     [Route("api/authentication")]
+    [ApiVersion("1.0")]
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
