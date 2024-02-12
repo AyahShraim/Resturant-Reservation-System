@@ -2,6 +2,7 @@ using Asp.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using RestaurantReservation.API.Authentication;
 using RestaurantReservation.API.Common.MiddleWares;
 using RestaurantReservation.API.Filters;
@@ -9,6 +10,7 @@ using RestaurantReservation.API.Models.Authentication;
 using RestaurantReservation.Db;
 using RestaurantReservation.Db.Repositories;
 using Serilog;
+using System.Reflection;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +21,30 @@ builder.Services.AddControllers(options =>
 
 
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(setupAction =>
+{
+    var xmlCommentsFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentsFile);
+
+    setupAction.IncludeXmlComments(xmlCommentsFullPath);
+    setupAction.AddSecurityDefinition("RestaurantReservationApiBearerAuthentication", new OpenApiSecurityScheme()
+    {
+        Type = SecuritySchemeType.Http,
+        Scheme = "Bearer",
+        Description = "Input a valid token to access this API"
+    });
+
+    setupAction.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "RestaurantReservationApiBearerAuthentication" }
+            }, new List<string>() }
+    });
+});
 builder.Services.AddSwaggerGen();
 
 Log.Logger = new LoggerConfiguration()

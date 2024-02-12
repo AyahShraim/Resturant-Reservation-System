@@ -10,6 +10,9 @@ using System.Text.Json;
 
 namespace RestaurantReservation.API.Controllers
 {
+    /// <summary>
+    /// Managing menu items controller
+    /// </summary>
     [Route("api/menuItems")]
     [Authorize]
     [ApiVersion("1.0")]
@@ -19,12 +22,26 @@ namespace RestaurantReservation.API.Controllers
         private readonly MenuItemRepository _menuItemRepository;
         private readonly IMapper _mapper;
         private const int DefaultPageSize = 10;
+
+        /// <summary>
+        /// Constructor for MenuItemsController
+        /// </summary>
+        /// <param name="menuItemRepository">The repository for menu item data</param>
+        /// <param name="mapper">The AutoMapper instance</param>
+        /// <exception cref="ArgumentNullException">Thrown if menuItemRepository or mapper is null</exception>
         public MenuItemsController(MenuItemRepository menuItemRepository, IMapper mapper)
         {
-            _menuItemRepository = menuItemRepository;
+            _menuItemRepository = menuItemRepository ?? throw new ArgumentNullException(nameof(menuItemRepository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
+        /// <summary>
+        /// Get list of menu items
+        /// </summary>
+        /// <param name="pageNumber">The page number to return</param>
+        /// <param name="pageSize">Max number of records per page</param>
+        /// <returns>List of menu items</returns>
+        /// <response code="200">Returns the list of menu items</response>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MenuItemWithoutDetailsDto>>> GetMenuItems(int pageNumber = 1, int pageSize = DefaultPageSize)
         {
@@ -33,6 +50,13 @@ namespace RestaurantReservation.API.Controllers
             return Ok(_mapper.Map<IEnumerable<MenuItemWithoutDetailsDto>>(menuItemEntities));
         }
 
+        /// <summary>
+        /// Get menu item by Id
+        /// </summary>
+        /// <param name="id">Id of menu item to return</param>
+        /// <returns>Menu item</returns>
+        /// <respone code="200">Returns the menu item with the specified id</respone>
+        /// <response code="404">If no menu item with the specified id is found</response>
         [HttpGet("{id}", Name = "GetMenuItem")]
         public async Task<IActionResult> Get(int id)
         {
@@ -46,6 +70,12 @@ namespace RestaurantReservation.API.Controllers
             return Ok(_mapper.Map<MenuItemWithoutDetailsDto>(menuItem));
         }
 
+        /// <summary>
+        /// Create a new menu item
+        /// </summary>
+        /// <param name="menuItemDto">Menu item data</param>
+        /// <returns>The created menu item</returns>
+        /// <response code="201">Returns the created menu item</response>
         [HttpPost]
         public async Task<ActionResult<MenuItemDto>> Create(MenuItemDto menuItemDto)
         {
@@ -55,6 +85,13 @@ namespace RestaurantReservation.API.Controllers
             return CreatedAtRoute("GetMenuItem", new { id = menuItemToReturn.Id }, menuItemToReturn);
         }
 
+        /// <summary>
+        /// Delete a menu item by Id
+        /// </summary>
+        /// <param name="id">Id of menu item to delete</param>
+        /// <returns>No content if success</returns>
+        /// <response code="204">If menu item deleted successfully</response>
+        /// <response code="404">If no menu item with the specified id is found</response>
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
@@ -68,6 +105,14 @@ namespace RestaurantReservation.API.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Update a menu item by Id
+        /// </summary>
+        /// <param name="id">Id of menu item to update</param>
+        /// <param name="menuItem">The updated menu item data</param>
+        /// <returns>No content if success</returns>
+        /// <response code="204">If menu item updated successfully</response>
+        /// <response code="404">If no menu item with the specified id is found</response>
         [HttpPut("{id}")]
         public async Task<ActionResult> Update(int id, MenuItemDto menuItem)
         {
