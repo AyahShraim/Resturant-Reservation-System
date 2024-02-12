@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using RestaurantReservation.API.Models.MenuItems;
 using RestaurantReservation.API.Models.OrderItems;
 using RestaurantReservation.Db.Entities;
 
@@ -12,6 +11,7 @@ namespace RestaurantReservation.API.Profiles
             CreateMap<OrderItem, OrderItemWithoutDetailsDto>();
             CreateMap<OrderItem, OrderItemDto>();
             CreateMap<OrderItemDto, OrderItem>();
+            CreateMap<OrderItem, OrderItemWithMenuItemDto>();
         }
     }
 }

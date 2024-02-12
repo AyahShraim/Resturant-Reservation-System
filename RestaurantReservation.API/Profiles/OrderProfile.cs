@@ -11,6 +11,7 @@ namespace RestaurantReservation.API.Profiles
             CreateMap<Order, OrderWithoutDetailsDto>();
             CreateMap<Order, OrderDto>();
             CreateMap<OrderDto, Order>();
+            CreateMap<Order, OrderWithOrdersItemsDto>();
         }   
     }
 }
