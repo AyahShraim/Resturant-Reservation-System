@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RestaurantReservation.API.DomainErrors;
 using RestaurantReservation.API.Models.Employees;
@@ -9,6 +10,7 @@ using System.Text.Json;
 namespace RestaurantReservation.API.Controllers
 {
     [Route("api/employees")]
+    [Authorize]
     [ApiController]
     public class EmployeesController : ControllerBase
     {

@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RestaurantReservation.API.DomainErrors;
 using RestaurantReservation.API.Models.MenuItems;
-using RestaurantReservation.API.Models.OrderItems;
 using RestaurantReservation.API.Models.Orders;
 using RestaurantReservation.API.Models.Reservations;
-using RestaurantReservation.API.Models.Restaurants;
 using RestaurantReservation.Db.Entities;
 using RestaurantReservation.Db.Repositories;
 using System.Text.Json;
@@ -13,6 +12,7 @@ using System.Text.Json;
 namespace RestaurantReservation.API.Controllers
 {
     [Route("api/reservations")]
+    [Authorize]
     [ApiController]
     public class ReservationsController : ControllerBase
     {
