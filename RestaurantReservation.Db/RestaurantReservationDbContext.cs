@@ -1,5 +1,5 @@
 ﻿using RestaurantReservation.Db.Entities;
-using RestaurantReservation.Db.Enums;
+using RestaurantReservation.Db.Enum;
 using RestaurantReservation.Db.SampleData;
 using RestaurantReservation.Db.ViewsModels;
 using RestaurantReservation.Db.StoredProcedureModels;

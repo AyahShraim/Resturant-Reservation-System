@@ -1,4 +1,4 @@
-﻿using RestaurantReservation.Db.Enums;
+﻿using RestaurantReservation.Db.Enum;
 
 namespace RestaurantReservation.Db.ViewsModels
 
