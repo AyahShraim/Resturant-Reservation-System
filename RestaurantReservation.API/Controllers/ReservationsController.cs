@@ -2,7 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using RestaurantReservation.API.DomainErrors;
 using RestaurantReservation.API.Models.MenuItems;
+using RestaurantReservation.API.Models.OrderItems;
+using RestaurantReservation.API.Models.Orders;
 using RestaurantReservation.API.Models.Reservations;
+using RestaurantReservation.API.Models.Restaurants;
 using RestaurantReservation.Db.Entities;
 using RestaurantReservation.Db.Repositories;
 using System.Text.Json;
@@ -91,6 +94,47 @@ namespace RestaurantReservation.API.Controllers
             _mapper.Map(reservation, existingReservation);
             await _reservationRepository.UpdateAsync(existingReservation);
             return NoContent();
+        }
+
+
+        [HttpGet("customer/{customerId}")]
+        public async Task<ActionResult<IEnumerable<ReservationWithoutDetailsDto>>> GetReservationForCustomer(int customerId)
+        {
+            var reservation = await _reservationRepository.GetReservationsByCustomerAsync(customerId);
+            if (reservation.Count() == 0)
+            {
+                var error = ReservationErrors.NoReservationFound(customerId);
+                return NotFound(error);
+            }
+            return Ok(_mapper.Map<IEnumerable<ReservationWithoutDetailsDto>>(reservation));
+        }
+
+        [HttpGet("{reservationId}/orders")]
+        public async Task<ActionResult<IEnumerable<OrderWithOrdersItemsDto>>> GetReservationOrdersWithRelatedMenuItems(int reservationId)
+        {
+            var reservation = await _reservationRepository.GetByIdAsync(reservationId);
+            if (reservation == null)
+            {
+                var error = ReservationErrors.NotFound(reservationId);
+                return NotFound(error);
+            }
+            var details = await _reservationRepository.ListOrdersAndMenuItemsAsync(reservationId);
+
+            return Ok(_mapper.Map<IEnumerable<OrderWithOrdersItemsDto>>(details));
+        }
+
+        [HttpGet("{reservationId}/menu-items")]
+        public async Task<ActionResult<IEnumerable<MenuItemWithoutDetailsDto>>> GetReservationOrderedMenuItems(int reservationId)
+        {
+            var reservation = await _reservationRepository.GetByIdAsync(reservationId);
+            if (reservation == null)
+            {
+                var error = ReservationErrors.NotFound(reservationId);
+                return NotFound(error);
+            }
+            var reservationOrderedMenuItems = await _reservationRepository.ListOrderedMenuItemsAsync(reservationId);
+
+            return Ok(_mapper.Map<IEnumerable<MenuItemWithoutDetailsDto>>(reservationOrderedMenuItems));
         }
     }
 }
