@@ -9,6 +9,10 @@ namespace RestaurantReservation.Db.Interfaces
 
         Task<bool> MatchingTableRestaurant(int restaurantId, int tableId);
 
+        Task<IEnumerable<Order>> ListOrdersAndMenuItemsAsync(int reservationId);
+
+        Task<IEnumerable<MenuItem>> ListOrderedMenuItemsAsync(int reservationId);
+
         Task<IEnumerable<CustomerWithLargePartySizeReservation>> GetCustomersWithLargePartyReservations(int partySizeThreshold);
     }
 }
