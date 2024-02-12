@@ -7,6 +7,8 @@ namespace RestaurantReservation.Db.Interfaces
     {
         Task<IEnumerable<Reservation>> GetReservationsByCustomerAsync(int customerId);
 
+        Task<bool> MatchingTableRestaurant(int restaurantId, int tableId);
+
         Task<IEnumerable<CustomerWithLargePartySizeReservation>> GetCustomersWithLargePartyReservations(int partySizeThreshold);
     }
 }
