@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RestaurantReservation.Db.DataModels;
-using RestaurantReservation.Db.Enums;
+using RestaurantReservation.Db.Entities;
+using RestaurantReservation.Db.Enum;
 
 namespace RestaurantReservation.Db.SampleData
 {

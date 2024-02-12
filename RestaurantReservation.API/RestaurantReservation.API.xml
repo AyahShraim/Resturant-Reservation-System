@@ -1,0 +1,559 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RestaurantReservation.API</name>
+    </assembly>
+    <members>
+        <member name="T:RestaurantReservation.API.Controllers.AuthenticationController">
+            <summary>
+            Controller for  authentication
+            </summary>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.AuthenticationController.#ctor(RestaurantReservation.API.Authentication.IJwtTokenService)">
+            <summary>
+            Constructor for AuthenticationController
+            </summary>
+            <param name="jwtTokenService">The service for generating JWT tokens</param>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.AuthenticationController.Authenticate(RestaurantReservation.API.Models.Authentication.AuthenticationCredentials)">
+            <summary>
+            Authenticate a user and generate a JWT token
+            </summary>
+            <param name="authenticationCredentials">The credentials for user authentication</param>
+            <returns>A JWT token if authentication is successful</returns>
+            <response code="200">Returns the JWT token if authentication is successful</response>
+            <response code="401">If authentication fails</response>
+        </member>
+        <member name="T:RestaurantReservation.API.Controllers.CustomersController">
+            <summary>
+            Managing customer controller
+            </summary>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.CustomersController.#ctor(RestaurantReservation.Db.Repositories.CustomerRepository,AutoMapper.IMapper)">
+            <summary>
+            Constructor for Customer Controller
+            </summary>
+            <param name="customerRepository">The repository for customer data</param>
+            <param name="mapper">The AutoMapper instance</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if customerRepository or mapper is null</exception>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.CustomersController.GetCustomers(System.Int32,System.Int32)">
+            <summary>
+            Get list of customers
+            </summary>
+            <param name="pageNumber">the page number to return</param>
+            <param name="pageSize"> max number of records per page</param>
+            <returns>List of customers</returns>
+            <response code="200">Returns the list of customers</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.CustomersController.Get(System.Int32)">
+            <summary>
+            Get customer by Id
+            </summary>
+            <param name="id">id of customer to return</param>
+            <returns>Customer</returns>
+            <response code="200">Returns the customer with the specified id</response>
+            <response code="404">If no customer with the specified id is found</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.CustomersController.Create(RestaurantReservation.API.Models.Customers.CustomerDto)">
+            <summary>
+            create new customer
+            </summary>
+            <param name="customerDto">Customer data</param>
+            <returns>The created customer</returns>
+            <response code="201">Returns the created customer</response>
+            <response code="409">If  customer email isn't unique</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.CustomersController.Delete(System.Int32)">
+             <summary>
+             Delete customer by Id
+             </summary>
+             <param name="id">id of customer to delete</param>
+             <returns>No content if success </returns>
+            <response code="204">If customer Deleted successfully</response>
+             <response code="404">If no customer with the specified id is found</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.CustomersController.Update(System.Int32,RestaurantReservation.API.Models.Customers.CustomerDto)">
+             <summary>
+             update customer by Id
+             </summary>
+             <param name="id">id of customer to update</param>
+             <param name="customer">the updated customer data</param>
+             <returns>no content if success</returns>
+            <response code="204">If customer Updated successfully</response>
+             <response code="404">If no customer with the specified id is found</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.CustomersController.PartiallyUpdate(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{RestaurantReservation.API.Models.Customers.CustomerDto})">
+            <summary>
+            partially update customer by id
+            </summary>
+            <param name="id">id of customer to update</param>
+            <param name="patchDocument">the JSON patch document</param>
+            <returns>no content if success</returns>
+            <response code="204">If customer is successfully partially updated</response>
+            <response code="400">If the request is invalid or the patch operation fails</response>
+            <response code="404">If no customer with the specified id is found</response>
+        </member>
+        <member name="T:RestaurantReservation.API.Controllers.EmployeesController">
+            <summary>
+            Managing employee controller
+            </summary>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.EmployeesController.#ctor(RestaurantReservation.Db.Repositories.EmployeeRepository,AutoMapper.IMapper)">
+            <summary>
+            Constructor for EmployeesController
+            </summary>
+            <param name="employeeRepository">The repository for employee data</param>
+            <param name="mapper">The AutoMapper instance</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if employeeRepository or mapper is null</exception>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.EmployeesController.GetEmployees(System.Int32,System.Int32)">
+            <summary>
+            Get list of employees
+            </summary>
+            <param name="pageNumber">The page number to return</param>
+            <param name="pageSize">The page number to return</param>
+            <returns>List of employees</returns>
+            <response code="200">Returns the list of employees</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.EmployeesController.Get(System.Int32)">
+            <summary>
+            Get employee by Id
+            </summary>
+            <param name="id">Id of employee to return</param>
+            <returns>Employee</returns>
+            <response code="200">Returns the employee with the specified id</response>
+            <response code="404">If no employee with the specified id is found</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.EmployeesController.Create(RestaurantReservation.API.Models.Employees.EmployeeDto)">
+            <summary>
+            Create new employee
+            </summary>
+            <param name="employeeDto">Employee data</param>
+            <returns>The created employee</returns>
+            <response code="201">Returns the created employee</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.EmployeesController.Delete(System.Int32)">
+            <summary>
+            Delete employee by Id
+            </summary>
+            <param name="id">Id of employee to delete</param>
+            <returns>No content if success</returns>
+            <response code="204">If employee deleted successfully</response>
+            <response code="404">If no employee with the specified id is found</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.EmployeesController.Update(System.Int32,RestaurantReservation.API.Models.Employees.EmployeeDto)">
+            <summary>
+            Update employee by Id
+            </summary>
+            <param name="id">Id of employee to update</param>
+            <param name="employee">The updated employee data</param>
+            <returns>No content if success</returns>
+            <response code="204">If employee updated successfully</response>
+            <response code="404">If no employee with the specified id is found</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.EmployeesController.GetManagers(System.Int32,System.Int32)">
+            <summary>
+            Get managers
+            </summary>
+            <param name="pageNumber">The page number to return</param>
+            <param name="pageSize">Max number of records per page</param>
+            <returns>List of managers</returns>
+            <response code="200">Returns the list of managers</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.EmployeesController.GetAverageOrderAmount(System.Int32)">
+            <summary>
+            Get average order amount for an employee
+            </summary>
+            <param name="employeeId">Id of the employee</param>
+            <returns>Average order amount</returns>
+            <response code="200">Returns the average order amount for the specified employee</response>
+            <response code="404">If no employee with the specified id is found</response>
+        </member>
+        <member name="T:RestaurantReservation.API.Controllers.MenuItemsController">
+            <summary>
+            Managing menu items controller
+            </summary>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.MenuItemsController.#ctor(RestaurantReservation.Db.Repositories.MenuItemRepository,AutoMapper.IMapper)">
+            <summary>
+            Constructor for MenuItemsController
+            </summary>
+            <param name="menuItemRepository">The repository for menu item data</param>
+            <param name="mapper">The AutoMapper instance</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if menuItemRepository or mapper is null</exception>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.MenuItemsController.GetMenuItems(System.Int32,System.Int32)">
+            <summary>
+            Get list of menu items
+            </summary>
+            <param name="pageNumber">The page number to return</param>
+            <param name="pageSize">Max number of records per page</param>
+            <returns>List of menu items</returns>
+            <response code="200">Returns the list of menu items</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.MenuItemsController.Get(System.Int32)">
+            <summary>
+            Get menu item by Id
+            </summary>
+            <param name="id">Id of menu item to return</param>
+            <returns>Menu item</returns>
+            <respone code="200">Returns the menu item with the specified id</respone>
+            <response code="404">If no menu item with the specified id is found</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.MenuItemsController.Create(RestaurantReservation.API.Models.MenuItems.MenuItemDto)">
+            <summary>
+            Create a new menu item
+            </summary>
+            <param name="menuItemDto">Menu item data</param>
+            <returns>The created menu item</returns>
+            <response code="201">Returns the created menu item</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.MenuItemsController.Delete(System.Int32)">
+            <summary>
+            Delete a menu item by Id
+            </summary>
+            <param name="id">Id of menu item to delete</param>
+            <returns>No content if success</returns>
+            <response code="204">If menu item deleted successfully</response>
+            <response code="404">If no menu item with the specified id is found</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.MenuItemsController.Update(System.Int32,RestaurantReservation.API.Models.MenuItems.MenuItemDto)">
+            <summary>
+            Update a menu item by Id
+            </summary>
+            <param name="id">Id of menu item to update</param>
+            <param name="menuItem">The updated menu item data</param>
+            <returns>No content if success</returns>
+            <response code="204">If menu item updated successfully</response>
+            <response code="404">If no menu item with the specified id is found</response>
+        </member>
+        <member name="T:RestaurantReservation.API.Controllers.OrderItemsController">
+            <summary>
+            Managing order items controller
+            </summary>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.OrderItemsController.#ctor(RestaurantReservation.Db.Repositories.OrderItemRepository,AutoMapper.IMapper)">
+            <summary>
+            Constructor for OrderItemsController
+            </summary>
+            <param name="orderItemRepository">The repository for order item data</param>
+            <param name="mapper">The AutoMapper instance</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if orderItemRepository or mapper is null</exception>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.OrderItemsController.GetOrderItems(System.Int32,System.Int32)">
+            <summary>
+            Get list of order items
+            </summary>
+            <param name="pageNumber">The page number to return</param>
+            <param name="pageSize">Max number of records per page</param>
+            <returns>List of order items</returns>
+            <response code="200">Returns the list of order items</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.OrderItemsController.Get(System.Int32)">
+            <summary>
+            Get order item by Id
+            </summary>
+            <param name="id">Id of order item to return</param>
+            <returns>Order item</returns>
+            <response code="200">Returns the order item with the specified id</response>
+            <response code="404">If no order item with the specified id is found</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.OrderItemsController.Create(RestaurantReservation.API.Models.OrderItems.OrderItemDto)">
+            <summary>
+            Create a new order item
+            </summary>
+            <param name="orderItemDto">Order item data</param>
+            <returns>The created order item</returns>
+            <response code="201">Returns the created order item</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.OrderItemsController.Delete(System.Int32)">
+            <summary>
+            Delete an order item by Id
+            </summary>
+            <param name="id">Id of order item to delete</param>
+            <returns>No content if success</returns>
+            <response code="204">If order item deleted successfully</response>
+            <response code="404">If no order item with the specified id is found</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.OrderItemsController.Update(System.Int32,RestaurantReservation.API.Models.OrderItems.OrderItemDto)">
+            <summary>
+            Update an order item by Id
+            </summary>
+            <param name="id">Id of order item to update</param>
+            <param name="orderItem">The updated order item data</param>
+            <returns>No content if success</returns>
+            <response code="204">If order item updated successfully</response>
+            <response code="404">If no order item with the specified id is found</response>
+        </member>
+        <member name="T:RestaurantReservation.API.Controllers.OrdersController">
+            <summary>
+            Managing orders controller
+            </summary>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.OrdersController.#ctor(RestaurantReservation.Db.Repositories.OrderRepository,AutoMapper.IMapper)">
+            <summary>
+            Constructor for OrdersController
+            </summary>
+            <param name="orderRepository">The repository for order data</param>
+            <param name="mapper">The AutoMapper instance</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if orderRepository or mapper is null</exception>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.OrdersController.GetOrders(System.Int32,System.Int32)">
+            <summary>
+            Get list of orders
+            </summary>
+            <param name="pageNumber">The page number to return</param>
+            <param name="pageSize">Max number of records per page</param>
+            <returns>List of orders</returns>
+            <response code="200">Returns the list of orders</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.OrdersController.Get(System.Int32)">
+            <summary>
+            Get order by Id
+            </summary>
+            <param name="id">Id of order to return</param>
+            <returns>Order</returns>
+            <response code="200">Returns the order with the specified id</response>
+            <response code="404">If no order with the specified id is found</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.OrdersController.Create(RestaurantReservation.API.Models.Orders.OrderDto)">
+            <summary>
+            Create a new order
+            </summary>
+            <param name="orderDto">Order data</param>
+            <returns>The created order</returns>
+            <response code="201">Returns the created order</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.OrdersController.Delete(System.Int32)">
+            <summary>
+            Delete an order by Id
+            </summary>
+            <param name="id">Id of order to delete</param>
+            <returns>No content if success</returns>
+            <response code="204">If order deleted successfully</response>
+            <response code="404">If no order with the specified id is found</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.OrdersController.Update(System.Int32,RestaurantReservation.API.Models.Orders.OrderDto)">
+            <summary>
+            Update an order by Id
+            </summary>
+            <param name="id">Id of order to update</param>
+            <param name="order">The updated order data</param>
+            <returns>No content if success</returns>
+            <response code="204">If order updated successfully</response>
+            <response code="404">If no order with the specified id is found</response>
+        </member>
+        <member name="T:RestaurantReservation.API.Controllers.ReservationsController">
+            <summary>
+            Managing reservations controller
+            </summary>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.ReservationsController.#ctor(RestaurantReservation.Db.Repositories.ReservationRepository,AutoMapper.IMapper)">
+            <summary>
+            Constructor for ReservationsController
+            </summary>
+            <param name="reservationRepository">The repository for reservation data</param>
+            <param name="mapper">The AutoMapper instance</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if reservationRepository or mapper is null</exception>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.ReservationsController.GetReservations(System.Int32,System.Int32)">
+            <summary>
+            Get list of reservations
+            </summary>
+            <param name="pageNumber">The page number to return</param>
+            <param name="pageSize">Max number of records per page</param>
+            <returns>List of reservations</returns>
+            <response code="200">Returns the list of reservations</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.ReservationsController.Get(System.Int32)">
+            <summary>
+            Get reservation by Id
+            </summary>
+            <param name="id">Id of reservation to return</param>
+            <returns>Reservation</returns>
+            <response code="200">Returns the reservation with the specified id</response>
+            <response code="404">If no reservation with the specified id is found</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.ReservationsController.Create(RestaurantReservation.API.Models.Reservations.ReservationDto)">
+            <summary>
+            Create a new reservation
+            </summary>
+            <param name="reservationDto">Reservation data</param>
+            <returns>The created reservation</returns>
+            <response code="201">Returns the created reservation</response>
+            <response code="404">If the restaurant or table specified in the reservation does not match</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.ReservationsController.Delete(System.Int32)">
+            <summary>
+            Delete reservation by Id
+            </summary>
+            <param name="id">Id of reservation to delete</param>
+            <returns>No content if success</returns>
+            <response code="204">If reservation is deleted successfully</response>
+            <response code="404">If no reservation with the specified id is found</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.ReservationsController.Update(System.Int32,RestaurantReservation.API.Models.Reservations.ReservationDto)">
+            <summary>
+            Update reservation by Id
+            </summary>
+            <param name="id">Id of reservation to update</param>
+            <param name="reservation">The updated reservation data</param>
+            <returns>No content if success</returns>
+            <response code="204">If reservation is updated successfully</response>
+            <response code="404">If no reservation with the specified id is found or the restaurant or table specified in the reservation does not match </response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.ReservationsController.GetReservationForCustomer(System.Int32)">
+            <summary>
+            Get reservations for a specific customer
+            </summary>
+            <param name="customerId">Id of the customer</param>
+            <returns>List of reservations for the customer</returns>
+            <response code="200">Returns the list of reservations for the customer</response>
+            <response code="404">If no reservations found for the customer</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.ReservationsController.GetReservationOrdersWithRelatedMenuItems(System.Int32)">
+            <summary>
+            Get orders with related menu items for a specific reservation
+            </summary>
+            <param name="reservationId">Id of the reservation</param>
+            <returns>List of orders with related menu items</returns>
+            <response code="200">Returns the list of orders with related menu items for the reservation</response>
+            <response code="404">If no reservation with the specified id is found</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.ReservationsController.GetReservationOrderedMenuItems(System.Int32)">
+            <summary>
+            Get the menu items ordered in a specific reservation
+            </summary>
+            <param name="reservationId">ID of the reservation</param>
+            <returns>List of menu items ordered in the reservation</returns>
+            <response code="200">Returns the list of menu items ordered in the reservation</response>
+            <response code="404">If no reservation with the specified ID is found</response>
+        </member>
+        <member name="T:RestaurantReservation.API.Controllers.RestaurantsController">
+            <summary>
+            Controller for managing restaurants
+            </summary>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.RestaurantsController.#ctor(RestaurantReservation.Db.Repositories.RestaurantRepository,AutoMapper.IMapper)">
+            <summary>
+            Constructor for RestaurantsController
+            </summary>
+            <param name="restaurantRepository">The repository for restaurant data</param>
+            <param name="mapper">The AutoMapper instance</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if restaurantRepository or mapper is null</exception>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.RestaurantsController.GetRestaurants(System.Int32,System.Int32)">
+            <summary>
+            Get list of restaurants
+            </summary>
+            <param name="pageNumber">The page number to return</param>
+            <param name="pageSize">Max number of records per page</param>
+            <returns>List of restaurants</returns>
+            <response code="200">Returns the list of restaurants</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.RestaurantsController.Get(System.Int32)">
+            <summary>
+            Get a specific restaurant by ID
+            </summary>
+            <param name="id">The ID of the restaurant to retrieve</param>
+            <returns>The restaurant with the specified ID</returns>
+            <response code="200">Returns the restaurant with the specified ID</response>
+            <response code="404">If no restaurant with the specified ID is found</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.RestaurantsController.Create(RestaurantReservation.API.Models.Restaurants.RestaurantDto)">
+            <summary>
+            Create a new restaurant
+            </summary>
+            <param name="restaurantDto">The data of the restaurant to create</param>
+            <returns>The created restaurant</returns>
+            <response code="201">Returns the created restaurant</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.RestaurantsController.Delete(System.Int32)">
+            <summary>
+            Delete a restaurant by ID
+            </summary>
+            <param name="id">The ID of the restaurant to delete</param>
+            <returns>No content if successful</returns>
+            <response code="204">If the restaurant is deleted successfully</response>
+            <response code="404">If no restaurant with the specified ID is found</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.RestaurantsController.Update(System.Int32,RestaurantReservation.API.Models.Restaurants.RestaurantDto)">
+            <summary>
+            Update a restaurant by ID
+            </summary>
+            <param name="id">The ID of the restaurant to update</param>
+            <param name="restaurant">The updated data for the restaurant</param>
+            <returns>No content if successful</returns>
+            <response code="204">If the restaurant is updated successfully</response>
+            <response code="404">If no restaurant with the specified ID is found</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.RestaurantsController.GetDetails(System.Int32)">
+            <summary>
+            Get a specific restaurant with its details
+            </summary>
+            <param name="id">The ID of the restaurant to retrieve</param>
+            <returns>The restaurant with its details</returns>
+            <response code="200">Returns the restaurant with its details</response>
+            <response code="404">If no restaurant with the specified ID is found</response>
+        </member>
+        <member name="T:RestaurantReservation.API.Controllers.TablesController">
+            <summary>
+            Controller for managing tables
+            </summary>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.TablesController.#ctor(RestaurantReservation.Db.Repositories.TableRepository,AutoMapper.IMapper)">
+            <summary>
+            Constructor for TablesController
+            </summary>
+            <param name="tableRepository">The repository for table data</param>
+            <param name="mapper">The AutoMapper instance</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if tableRepository or mapper is null</exception>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.TablesController.Get(System.Int32,System.Int32)">
+            <summary>
+            Get list of tables
+            </summary>
+            <param name="pageNumber">The page number to return</param>
+            <param name="pageSize">Max number of records per page</param>
+            <returns>List of tables</returns>
+            <response code="200">Returns the list of tables</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.TablesController.GetTable(System.Int32)">
+            <summary>
+            Get a specific table by ID
+            </summary>
+            <param name="id">The ID of the table to retrieve</param>
+            <returns>The table with the specified ID</returns>
+            <response code="200">Returns the table with the specified ID</response>
+            <response code="404">If no table with the specified ID is found</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.TablesController.Create(RestaurantReservation.API.Models.Tables.TableDto)">
+            <summary>
+            Create a new table
+            </summary>
+            <param name="tableDto">The data of the table to create</param>
+            <returns>The created table</returns>
+            <response code="201">Returns the created table</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.TablesController.Delete(System.Int32)">
+            <summary>
+            Delete a table by ID
+            </summary>
+            <param name="id">The ID of the table to delete</param>
+            <returns>No content if successful</returns>
+            <response code="204">If the table is deleted successfully</response>
+            <response code="404">If no table with the specified ID is found</response>
+        </member>
+        <member name="M:RestaurantReservation.API.Controllers.TablesController.Update(System.Int32,RestaurantReservation.API.Models.Tables.TableDto)">
+            <summary>
+            Update a table by ID
+            </summary>
+            <param name="id">The ID of the table to update</param>
+            <param name="table">The updated data for the table</param>
+            <returns>No content if successful</returns>
+            <response code="204">If the table is updated successfully</response>
+            <response code="404">If no table with the specified ID is found</response>
+        </member>
+    </members>
+</doc>
